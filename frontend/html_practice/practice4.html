@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>연습 문제4</title>
+</head>
+<body>
+    <h1>레드향 주문하기</h1>
+    <form action="">
+        <fieldset>
+            <legend>상품 선택</legend>
+            <h4>주문할 상품을 선택해 주세요.</h4>
+            <input type="checkbox"> 선물용 3kg <input type="number" min="0" max="5">개 <small>(최대 5개)</small><br>
+            <input type="checkbox"> 선물용 5kg <input type="number" min="0" max="5">개 <small>(최대 5개)</small><br>
+            <input type="checkbox"> 가정용 3kg <input type="number" min="0" max="5">개 <small>(최대 5개)</small><br>
+            <input type="checkbox"> 가정용 5kg <input type="number" min="0" max="5">개 <small>(최대 5개)</small><br>
+            <h4>포장 선택</h4>
+            <input type="radio" name="wrap">선물 포장<br>
+            <input type="radio" name="wrap">선물 포장 안함
+        </fieldset>
+        <fieldset>
+            <legend>배송 정보</legend>
+            이름 <input type="text"><br>
+            배송 주소 <input type="text"><br>
+            이메일 <input type="email" name="" id=""><br>
+            연락처 <input type="tel" name="" id="" placeholder="하이픈 빼고 입력해주세요(01012345678)"><br>
+            배송 지정 <input type="date" name="" id="">(주문일로부터 최소 3일 이후)
+        </fieldset>
+        <input type="submit" value="주문하기"> <input type="reset" value="취소하기">
+    </form>
+</body>
+</html>

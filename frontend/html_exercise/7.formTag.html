@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>폼(데이터 전송) 태그 관련</title>
+    </head>
+    <body>
+        <h1>데이터 전송 태그</h1>
+        <h1>첫번째 폼(form, input)</h1>
+        <!--
+            폼은 데이터를 전송하는데 필요한 태그임
+            action에는 목적지 주소를 적고 method는 보내는 방식을 적는다.
+            input태그에 id, password를 입력하고 로그인(submit)을 누르면
+            데이터 전송이 시작된다. 내가 입력한 값은 물음표 뒤에 붙게 되고
+            input태그에 name에 적은 value가 키가 되어 매핑되어 전송된다.
+            http://127.0.0.1:5500/member/login.do?userId=asdf&userPw=asdf
+            ? 이하를 우리는 쿼리스트링이라고 한다.
+        -->
+        <form action="/member/login.do" method="get">
+            ID : <input type="text" name="userId"> <br>
+            PW : <input type="password" name="userPw"> <br>
+            <input type="submit" value="로그인">
+            <input type="reset" value="취소">
+        </form>
+        <h1>두번째 폼(action, method, name)</h1>
+        <!--
+            method 방식
+            1. get : url에 입력한 값이 보임, 쿼리스트링이 보임
+            2. post : url에 쿼리스트링이 안보임.
+        -->
+        <form action="/member/login.do" method="post">
+            ID : <input type="text" name="memberId"> <br>
+            PW : <input type="password" name="memberPw"> <br>
+            <input type="submit" value="로그인">
+            <input type="reset" value="취소">
+        </form>
+        <h1>세번째 폼(html5 속성)</h1>
+        <form action="목적지(url, jsp, ...)" method="post">
+            text : 텍스트 입력 <br>
+            password : 패스워드 입력(마스킹 처리) <br>
+            submit : 폼 데이터 전송 <br>
+            reset : 입력값 초기화 <br>
+            checkbox : <input type="checkbox">짜장면 <input type="checkbox">짬뽕 <input type="checkbox">유란기 <input type="checkbox">볶음밥 <br>
+            radio : <input type="radio" name="gender">남 <input type="radio" name="gender">여 <br>
+            button : <input type="button" value="버튼"> <br>
+            file : <input type="file"> <br>
+            hidden : <input type="hidden" value="1"> <br>
+            date : <input type="date"> <br>
+            datetime : <input type="time"> <br>
+            datetime-local : <input type="datetime-local"> <br>
+            week : <input type="week"> <br>
+            number : <input type="number" min="1" max="100"> <br>
+            range : <input type="range"> <br>
+            email : <input type="email"> <br>
+            search : <input type="search"> <br>
+            textarea : <textarea name="" id="" rows="3" cols="10"></textarea>
+        </form>
+        <hr>
+        <h1>네번째 폼(label, fieldset, legend)</h1>
+        <form action="#">
+            <fieldset>
+                <legend>로그인</legend>
+                ID : <input type="text">
+                PW : <input type="password">
+            </fieldset>
+        </form>
+        <form action="">
+            <fieldset>
+                <legend>좋아하는 음식(다중선택)</legend>
+                <label>
+                    <input type="checkbox">감자탕
+                </label>
+                <input type="checkbox" id="maratang">
+                <label for="maratang">
+                    마라탕
+                </label>
+                <label>
+                    <input type="checkbox">알탕
+                </label>
+                <input type="checkbox" id="hottang">
+                <label for="hottang">매운탕</label>
+            </fieldset>
+        </form>
+        <form action="" method="">
+            <fieldset>
+                <legend>취미생활</legend>
+                <label>
+                    <input type="radio" name="hobby" id=""> 코딩
+                </label>
+                <input type="radio" name="hobby" id="neflix"> 
+                <label for="neflix">넷플릭스</label>
+                <input type="radio" name="hobby" id="sport"> 
+                <label for="sport">스포츠</label>
+                <label>
+                    <input type="radio" name="hobby" id=""> 수영
+                </label>
+                <input type="radio" name="hobby" id="golf">
+                <label for="golf">골프</label>
+            </fieldset>
+        </form>
+        <h1>다섯번째 폼(placeholder, required)</h1>
+        <form action="/user/login.do" method="post">
+            <fieldset>
+                <legend>로그인</legend>
+                ID : <input type="text" name="" id="" placeholder="아이디를 입력해주세요" required>
+                PW : <input type="password" required placeholder="비밀번호를 입력해주세요">
+                <input type="submit" value="로그인">
+            </fieldset>
+        </form>
+        <h1>여섯번째 폼(select)</h1>
+        <form action="/user/login.do" method="get">
+            <fieldset>
+                <legend>직업을 선택하세요</legend>
+                <select name="sel">
+                    <option value="1">의사</option>
+                    <option value="2">검사</option>
+                    <option value="3">판사</option>
+                    <option value="4">강사</option>
+                </select>
+                <input type="submit" value="결정">
+            </fieldset>
+        </form>
+        <hr>
+        <form action="/member/search.do" method="get">
+            <select name="" id="">
+                <option value="">제목</option>
+                <option value="">내용</option>
+                <option value="">작성자</option>
+            </select>
+            <input type="text" name="" id="">
+            <input type="submit" value="검색">
+        </form>
+    </body>
+</html>

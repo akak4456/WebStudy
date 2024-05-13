@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>선택자 part1</title>
+        <style>
+            /* 내부 스타일 */
+            h1 {
+                --color: blue;
+            }
+            p {
+                color: tomato;
+            }
+            .p1 {
+                color: blueviolet;
+            }
+            #good-color {
+                color :  turquoise;
+            }
+            /* 기본속성선택자 : 속성(태그 내 빨간글씨)을 이용하여 input 같은 태그는 생략 가능함.*/
+            input[type="text"] {
+                background-color: gold;
+            }
+            /* 문자열 속성 선택자 : 속성을 이용하되 기능이 추가됨 */
+            /* 아래것의 의미는 p태그인데 name이 Test로 시작하는 것을 고른다는 의미 */
+            p[name^="Test"] {
+                --color: yellowgreen;
+            }
+            /* 시작이 있으면 끝이 있어야 한다.
+            속성값이 특정값으로 끝나는 태그 선택시 */
+            p[class$=c1] {
+                --background-color: violet;
+            }
+            /*
+            속성값이 class로 시작하고 -를 포함하는 태그 선택
+            */
+            p[class|=class] {
+                --background-color: red;
+            }
+            /*
+            띄어쓰기로 구분되어 있는 값 중 특정값을 포함하는 태그 선택
+            */
+            p[name~=Test] {
+                --background-color: beige;
+            }
+            /*
+            검색하는 느낌
+            클래스에 p 라는 글자가 포함되기만 하면 선택한다
+            속성값이 포함된 태그 선택, 검색하는 기능
+            */
+            p[class*=p] {
+                background-color: rebeccapurple;
+            }
+            /* 자손선택자, 부모 자식관의 관계 태그안에 태그를 선택 */
+            div>h2 {
+                color: green;
+            }
+            ul>li {
+                background-color: azure;
+            }
+            /* 후손선택자, 태그 안에 태그 안에 태그를 선택 */
+            div li {
+                --color: yellowgreen;
+            }
+            div>ul>li {
+                color:red;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- 
+        1. CSS(Cascading Style Sheets)
+        HTML로 작성된 문서의 표시방법을 기술하기 위한 스타일 시트 언어 
+        2. CSS 적용방법(사용법)
+        3. 우선순위
+        -->
+        <!-- 인라인 스타일 -->
+        <h1>태그 선택자, 아이디 선택자, 클래스 선택자</h1>
+        <h1>레드향</h1>
+        <p id="good-color">껍질에 붉은 빛이 돌아 레드향이라 불린다.</p>
+        <p class="p1">레드향은 한라봉과 귤을 교배한 것으로 일반 귤보다 2~3배 크고, 과육이 붉고 통통하다.</p>
+        <p class="p1">비타민 C와 비타민 P가 풍부해 혈액순환, 감기예방에 좋은것으로 알려져 있다.</p>
+        <p>정말 맛있다.</p>
+        <h1>기본 속성 선택자</h1>
+        <input type="text" name="user-id" id="">
+        <input type="text" name="user-pw" id="">
+        <h1>문자열 속성 선택자</h1>
+        <p name="Test 1" id="i1" class="class-c1">Test1 글자입니다.</p>
+        <p name="Test 2" id="i2" class="c1">Test2 글자입니다.</p>
+        <p name="Test 3" id="i3" class="c1">Test3 글자입니다.</p>
+        <p name="Test 4" id="i4" class="c2">Test4 글자입니다.</p>
+        <p name="Test 5" id="i5" class="c2">Test5 글자입니다.</p>
+        <p name="Test 6" id="i6" class="class-c2">Test6 글자입니다.</p>
+        <p name="Test 7" id="i7" class="p-class c1">Test7 글자입니다.</p>
+        <p name="Test 8" id="i8" class="class-p c3">Test8 글자입니다.</p>
+        <p name="Test 9" id="i9" class="classp c3">Test9 글자입니다.</p>
+        <h1>자손/후손 선택자</h1>
+        <div>
+            <h2>div의 자손입니다.</h2>
+            <ul>
+                <li>div의 후손1입니다.</li>
+                <li>후손2입니다.</li>
+                <li>ul의 자손입니다.</li>
+            </ul>
+        </div>
+    </body>
+</html>

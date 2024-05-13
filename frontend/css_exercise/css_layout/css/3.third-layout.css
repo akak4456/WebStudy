@@ -1,0 +1,48 @@
+div {
+    border: 1px solid black;
+    box-sizing: border-box;
+}
+
+#header {
+    width: 100%;
+    height: 150px;
+}
+#header-layout1 {
+    width: 15%;
+    height: 100%;
+    float: left;
+}
+#header-layout2 {
+    width: 70%;
+    height: 100%;
+    float: left;
+}
+#header-layout3 {
+    width: 15%;
+    height: 100%;
+    float: left;
+}
+
+#main {
+    width: 100%;
+    height: 500px;
+}
+#main-layout1 {
+    width: 10%;
+    height: 100%;
+    float: left;
+}
+#main-layout2 {
+    width: 60%;
+    height: 100%;
+    float: left;
+}
+#main-layout3 {
+    width: 30%;
+    height: 100%;
+    float: left;
+}
+#footer {
+    width: 100%;
+    height: 150px;
+}

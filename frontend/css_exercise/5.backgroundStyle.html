@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>배경 관련 스타일</title>
+        <style>
+            body {
+                background-color: aquamarine;
+            }
+            #div-bg {
+                border : 5px solid blue;
+                background-color: pink;
+                width: 50%;
+                height: 100px;
+                --margin-top: 55px;
+                margin-bottom: 20px;
+                --margin-left: 30px;
+                padding-top: 10px;
+            }
+            #div-margin {
+                border : 7px solid black;
+                width: 50%;
+                height: 100px;
+                background-color: tomato;
+            }
+            .div-test {
+                background-color: #fff;
+                width: 10%;
+                border : 5px dashed black;
+                margin: 30px;
+                padding: 20px;
+            }
+            #div1 {
+                background-clip: border-box;
+            }
+            #div2 {
+                background-clip: padding-box;
+            }
+            #div3 {
+                background-clip: content-box;
+            }
+            #bg-img {
+                border: 3px solid #000;
+                width: 90%;
+                height: 500px;
+                background-image: url(../html_exercise/images/mic.jpg);
+                background-repeat: no-repeat;
+                background-size: auto;
+                background-position: 50% 50%;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>배경 색상 스타일</h1>
+        <h3>background 속성 : 배경 스타일을 지정하는 속성</h3>
+        <pre>선택자 { background : 색상명 | 16진수 | rgb | rgba }로 배경색을 지정함</pre>
+        <hr>
+        <h3>div 배경 테스트</h3>
+        <pre>div영역을 설정하는 경우 배경색을 지정하기 위해서 div에 배경색을 별도로 지정 필요</pre>
+        <div id="div-bg">
+            텍스트를 작성완료하였습니다.
+        </div>
+        <div id="div-margin">마진</div>
+        <h3>배경 적용 범위 조정</h3>
+        <pre>div영역의 배경 적용 범위를 지정할 때 background-clip 속성을 사용</pre>
+        <div class="div-test" id="div1">완벽한 암기는 이해와 구별할 수 없다. K박사</div>
+        <div class="div-test" id="div2">완벽한 암기는 이해와 구별할 수 없다. K박사</div>
+        <div class="div-test" id="div3">완벽한 암기는 이해와 구별할 수 없다. K박사</div>
+        <h3>배경이미지 테스트</h3>
+        <pre>background-image 속성을 이용하여 배경 사진을 넣을 수 있음.</pre>
+        <pre>배경 이미지의 반복 방법을 지정하기 위해서 background-repeat 속성을 이용</pre>
+        <pre>배경 이미지가 요소보다 크거나 작은 경우 배경 이미지의 크기를 
+        background-size 속성을 변경 가능</pre>
+        <pre>배경 이미지의 위치를 조정하기 위해서 backgrond-position 속성을 사용</pre>
+        <pre>배경 이미지가 움직이지 않게 하기 위해서 background-attachment 속성을 이용하여
+        웹페이지가 위아래로 움직여도 배경이미지는 움직이지 않게 할 수 있다.</pre>
+        <div id="bg-img">
+            <!-- <img src="../html_exercise/images/salad.jpg" alt="샐러드사진"> -->
+        </div>
+    </body>
+</html>

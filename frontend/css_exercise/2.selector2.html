@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>선택자 part2</title>
+        <style>
+            /*
+            동위선택자
+            - 기준은 미포함, 바로 뒤 여러개 선택(~)
+            - 기준은 미포함, 바로 뒤 1개 선택(+)
+            */
+            h5~p{
+                background-color:brown;
+            }
+            h5+p{
+                color: white;
+            }
+            /*
+            일반 구조 선택자
+            - :first-child, 첫번째 요소 선택
+            - :last-child, 마지막 요소 선택
+            - :nth-child(), 짝수번째, 홀수번째, 특정 요소 선택
+            - :nth-last-child(), 뒤부터 카운트하며 nth-child와 동일
+            사용상 주의점: 형제,자매 요소들이 같은 태그일때 가능
+            */
+            #div-test1>p:first-child {
+                color: blue;
+                background-color: yellow;
+            }
+            #div-test1 p:last-child{
+                color: blue;
+                background-color: yellow;
+            }
+            #div-test1 p:nth-child(2n) {
+                color:blue;
+                background-color: yellow;
+            }
+            /*
+            형태구조 선택자
+            1. child 대신 of-type 쓰면 됨
+            2. 형제, 자매 요소가 섞여 있는 경우 쓰면됨
+            3. 나머지 기본 구조 선택자랑 같음.
+            */
+            #div-test2 p:last-of-type {
+                color: blue;
+                background-color: yellow;
+            }
+            #div-test2 h4:first-of-type {
+                color: blue;
+                background-color: yellow;
+            }
+            #div-test2 h4:nth-of-type(2) {
+                color: blue;
+                background-color: yellow;
+            }
+            #div-test2 p:nth-of-type(2) {
+                color: blue;
+                background-color: yellow;
+            }
+            /*
+            상태선택자(input태그와 관련)
+            - :focus, 커서가 있는 input 태그를 선택함
+            - :checked, 체크 상태의 input 태그를 선택함
+            */
+            [type=text]:focus {
+                background-color: gold;
+            }
+            [type=checkbox]:checked {
+                width: 50px;
+                height: 50px;
+            }
+            /*
+            속성선택자(select태그와 관련)
+            :enabled, option 태그에서 선택가능한 상태
+            :disabled, option 태그에서 선택 불가능한 상태
+            */
+            option:enabled {
+                background-color: green;
+            }
+            option:disabled {
+                background-color: red;
+            }
+            /*
+            링크선택자(a태그와 관련)
+            :link 링크 들어가기 전
+            :visited 링크 들어간 후
+            */
+            a {
+                text-decoration: none;
+            }
+            a:link {
+                color: red;
+            }
+            a:visited {
+                color: green;
+            }
+            /*
+            13. 전체선택자(*)
+            14. 부정선택자(:not(selector))
+            */
+        </style>
+    </head>
+    
+    <body>
+        <div>
+            <h4>자손1</h4>
+            <h5>자손2</h5>
+            <p>자손3</p>
+            <p>자손4</p>
+            <p>자손5</p>
+            <h5>자손2</h5>
+            <p>자손6</p>
+        </div>
+        <h1>일반 구조 선택자</h1>
+        <div>
+            <div id="div-test1">
+                <p>테스트1-1 입니다.</p>
+                <p>테스트1-2 입니다.</p>
+                <p>테스트1-3 입니다.</p>
+                <p>테스트1-4 입니다.</p>
+                <p>테스트1-5 입니다.</p>
+            </div>
+        </div>
+        <h1>형태 구조 선택자</h1>
+        <div id="div-test2">
+            <p>테스트 1p입니다.</p>
+            <h4>테스트 h4의 1번째</h4>
+            <p>테스트 2p입니다.</p>
+            <h4>테스트 h4의 2번째</h4>
+            <p>테스트 3p입니다.</p>
+            <h4>테스트 h4의 3번째</h4>
+            <p>테스트 4p입니다.</p>
+            <h4>테스트 h4의 4번째</h4>
+        </div>
+        <h1>상태, 속성, 링크 선택지</h1>
+        <form action="목적지" method="get">
+            <fieldset>
+                <legend>회원 정보</legend>
+                이름 : <input type="text"> <br>
+                아이디 : <input type="text"> <br>
+                이메일 : <input type="text"> <br>
+                취미 : <input type="checkbox">독서
+                <input type="checkbox">코딩
+                <input type="checkbox">수영
+                <small>(상태선택자)</small> <br>
+                <select>
+                    <option disabled>자바</option>
+                    <option>오라클</option>
+                    <option>JDBC</option>
+                    <option>HTML5</option>
+                    <option>CSS3</option>
+                </select>
+                <small>(속성선택자)</small> <br>
+                <a href="http://gdu.co.kr">구디아카데미</a>
+                <small>(링크선택자)</small> <br>
+                <input type="submit" value="제출">
+                <input type="reset" value="취소">
+            </fieldset>
+        </form>
+    </body>
+</html>
