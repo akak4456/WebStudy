@@ -1,10 +1,11 @@
-<!DOCTYPE html>
-<html lang="ko">
-	<head>
-		<title>Hello, HTML</title>
-	</head>
-	<body>
-		Hello, HTML <br>
-		<h1>Hello, HTML</h1>
-	</body>
-</html>
+Fn  = Fn-1 + Fn-2
+	= Fn-2 + Fn-3 + Fn-2
+	= 2 * Fn-2 + Fn-3 = 2 * Fn-2 + 1 * Fn-4 + 1* Fn-5
+	= 2 * (Fn-3 + Fn-4) + Fn-3
+	= 3 * Fn-3 + 2 * Fn-4
+	= 3 * (Fn-4 + Fn-5) + 2 * Fn-4
+	= 5 * Fn-4 + 3 * Fn-5
+	= Fk+1 * Fn-k + Fk * Fn-k-1
+	= (Fk + Fk-1) * Fn-k + Fk * Fn-k-1
+	= Fk * (Fn-k + Fn-k-1) + Fk-1 * Fn-k
+	= (Fk + Fk-1) * Fn-k
