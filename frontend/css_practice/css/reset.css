@@ -1,0 +1,9 @@
+/*
+브라우저 기본 스타일을 reset.css 로 이용해서
+지운다.
+*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}

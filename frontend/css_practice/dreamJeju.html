@@ -3,21 +3,20 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Dream Jeju</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+        <title>제주의 꿈</title>
         <link rel="stylesheet" href="./css/main.css">
         <link rel="stylesheet" href="./css/reset.css">
     </head>
     <body>
         <div id="container">
             <header>
-                <div class="logo">
-                    <span id="logo-text">Dream Jeju</span>
+                <div id="logo">
+                    <a href="#">
+                        <h1>Dream Jeju</h1>
+                    </a>
                 </div>
-                <nav id="top-nav">
-                    <ul>
+                <nav>
+                    <ul id="topMenu">
                         <li><a href="#">단체 여행</a></li>
                         <li><a href="#">맞춤 여행</a></li>
                         <li><a href="#">갤러리</a></li>
@@ -25,46 +24,43 @@
                     </ul>
                 </nav>
             </header>
-            <main>
-                <section>
-                    <article>
-                        <h1>몸과 마음이 치유되는 섬</h1>
-                        <div class="main-content">
-                            <div class="main-content-img">
-                                <img src="./images/healing.jpg">
-                            </div>
-                            <div class="main-content-text">
-                                <h2>쉼(Healing)의 공간으로 안내합니다.</h2>
-                                <p>탁 트인 바다, 시원한 바람에 몸을 맡기고 뚜벅뚜벅 오름을 오르고 올렛길을 걷다보면 온전히 나에게 집중할 수 있습니다.</p>
-                                <h2>상세 일정</h2>
-                                <p>여행 기간 : 2박 3일<br>여행 일정 : (여행 일정은 상담을 통해 결정 및 조정 가능합니다)</p>
-                            </div>
-                        </div>
-                    </article>
-                    <article>
-                        <h1>다양한 액티비티가 기다리는 섬</h1>
-                        <div class="main-content">
-                            <div class="main-content-img">
-                                <img src="./images/activity.jpg">
-                            </div>
-                            <div class="main-content-text">
-                                <h2>모험과 스릴이 넘치는 레저의 천국으로 안내합니다.</h2>
-                                <p>둘러보기만 한 여행을 하셨나요?...</p>
-                            </div>
-                        </div>
-                    </article>
+            <main class="contents">
+                <section id="healing">
+                    <div class="detail">
+                        <h2>몸과 마음이 치유되는 섬</h2>
+                        <img src="./images/healing.jpg" alt="healing">
+                        <p><b>쉼(Healing)의 공간으로 안내합니다.</b></p>
+                        <p>
+                            탁 트인 바다, 시원한 바다에 몸을 맡기고 뚜벅뚜벅 오름을 오르고 올랫길을 걷다보면 온전히 나에게 집중할 수 있습니다.
+                        </p>
+                    </div>
+                    <div class="schedule">
+                        <h3>상세 일정</h3>
+                        <ul>
+                            <li>여행 기간 : 2박 3일</li>
+                            <li>여행 일정 : (여행 일정은 상담을 통해 결정 및 조정 가능합니다)</li>
+                        </ul>
+                    </div>
+                </section>
+                <section id="activity">
+                    <div class="detail">
+                        <h2>다양한 액티비티가 기다리는 섬</h2>
+                        <img src="./images/activity.jpg" alt="healing">
+                        <p><b>모험과 스릴이 넘치는 레저의 천국으로 안내합니다.</b></p>
+                        <p>둘러보기만 한 여행을 하셨나요?</p>
+                        <p>하늘을 날아 시원한 바다를 내려다보는 패러글라이등과 투명한 불빛 속을 여행하는 스쿠버다이빙... 아름다운 제주 해안도로를 씽씽 전동바이크나 전동킥보드로 달려보세요. 시원한 바다를 가까이에서 느낄 수 있는 요트 체험과 배낚시도 빼놓을 수 없겠죠?</p>
+                    </div>
                 </section>
             </main>
-            <hr>
             <footer>
-                <nav id="bottom-nav">
+                <section id="bottomMenu">
                     <ul>
                         <li><a href="#">회사소개</a></li>
                         <li><a href="#">개인정보처리방침</a></li>
                         <li><a href="#">여행약관</a></li>
                         <li><a href="#">사이트맵</a></li>
                     </ul>
-                </nav>
+                </section>
             </footer>
         </div>
     </body>

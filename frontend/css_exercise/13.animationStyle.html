@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>애니메이션 스타일</title>
+        <style>
+            div {
+                width: 100px;
+                height: 100px;
+            }
+            .div-class{
+                background-color: salmon;
+                animation-name: transAni;
+                animation-duration: 5s;
+            }
+            @keyframes transAni {
+                0% {
+                    background-color: yellowgreen;
+                }
+                100% {
+                    background-color: orange;
+                    border-radius: 50%;
+                    transform: rotateZ(360deg);
+                }
+            }
+            .div2-class {
+                background-color: black;
+                margin: 100px;
+                animation-name: rainbow;
+                animation-duration: 5s;
+                animation-iteration-count: infinite;
+            }
+            @keyframes rainbow {
+                0% {
+                    background-color: red;
+                }
+                15% {
+                    background-color: orange;
+                }
+                30% {
+                    background-color: yellow;
+                }
+                45% {
+                    background-color: green;
+                }
+                60% {
+                    background-color: blue;
+                }
+                75% {
+                    background-color: navy;
+                }
+                100% {
+                    background-color: blueviolet;
+                }
+            }
+            img {
+                width: 300px;
+                height: 80px;
+            }
+            img:hover {
+                animation-name: imgAni;
+                animation-duration: 7s;
+                animation-iteration-count: infinite;
+            }
+            @keyframes imgAni{
+                0% {
+                    border: 3px dashed black;
+                    
+                    /*
+                    로테이드 180도는 거꾸로된 이미지임
+                    50%로 갈때는 이미지는 원래 모습으로 와야됨
+                    왼쪽으로 돌아서 원래 모습으로 감
+                    */
+                }
+                50% {
+                    border-radius: 50%;
+                    transform: rotate(180deg);
+                    /*
+                    0% 때와는 다르게 거꾸로 되어 있지 않기 때문에
+                    거꾸로 되기 위해 오른쪽으로 돌아버림
+                    100%로 갈때는 원래 모습으로 와야되기 때문에
+                    왼쪽으로 돌아서 원래 모습으로 감
+                    */
+                }
+                100% {
+                    border: 3px solid yellow;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <h1>애니메이션</h1>
+        <div class="div-class"></div> <br>
+        <div class="div2-class"></div><br><br><br>
+        <div>
+            <img src="./img/flower4.PNG" alt="flower">
+        </div>
+    </body>
+</html>

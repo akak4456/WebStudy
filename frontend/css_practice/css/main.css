@@ -1,103 +1,124 @@
-body {
-    margin: 0;
+@import url('https://fonts.googleapis.com/css2?family=Merienda:wght@700&display=swap');
+/*
+폰트를 CSS에 불러올 때에는 @import url 을 사용해라
+*/
+a {
+    text-decoration: none;
 }
+
 #container {
     width: 1200px;
     margin: 0 auto;
+    background-color: #fff;
 }
 header {
     width: 100%;
     height: 100px;
-    background-color: #004455;
-}
-.logo {
-    width: 20%;
-    height: 100%;
-    float: left;
-}
-#logo-text{
-    display: block;
-    width: 100%;
-    line-height: 100px;
-    text-align: center;
-    color: white;
-    font-size: 45px;
-    text-align: center;
-    font-family: "Roboto", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-}
-#top-nav {
-    width: 80%;
-    height: 100%;
-    float: left;
-}
-#top-nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    vertical-align: auto;
-    height: 100%;
-}
-#top-nav ul li {
-    width: 25%;
-    float: left;
-    text-align: center;
-    margin: auto;
-}
-#top-nav ul li a:visited, #top-nav ul li a:link {
-    color: white;
-    font-size: 20px;
-    text-decoration: none;
-}
-main {
-    padding: 0 30px;
-    height: 650px;
-}
-.main-content-img {
-    width: 35%;
-    float: left;
-}
-.main-content-img img {
-    border-radius: 10px;
-    width: 100%;
-}
-.main-content-text{
-    width: 65%;
-    float: left;
-    padding: 0 20px;
-    box-sizing: border-box;
-}
-hr {
-    background-color: black;
-    height: 2px;
+    background-color: #045;
 }
 
-#bottom-nav {
-    width: 600px;
-}
-#bottom-nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    vertical-align: auto;
-}
-#bottom-nav ul li {
-    width: 25%;
+#logo {
+    width: 250px;
+    height: 100px;
+    padding-left: 20px;
+    line-height: 100px;
     float: left;
-    text-align: center;
-    margin: auto;
-    border-right: 2px solid #DCDCDC;
-    box-sizing: border-box;
 }
-#bottom-nav ul li:last-child {
-    border-right: 0;
+
+/*
+div.parent {
+    display: table-cell;
+    vertical-align: middle;
 }
-#bottom-nav ul li a:visited, #bottom-nav ul li a:link {
-    color: black;
-    text-decoration: none;
+와 같이 해도 가운데 정렬이 되네?
+*/
+
+#logo h1 {
+    color: #fff;
+    font-size: 30px;
+    font-weight: 700;
+    font-family: 'Merienda', cursive;
 }
+    nav {
+        width: 900px;
+        height: 100px;
+        float: right;
+        --line-height: 5;
+        margin-top: 40px;
+    }
+        #topMenu {
+            height: 60px;
+            list-style-type: none;
+        }
+        #topMenu li {
+            float: left;
+        }
+        #topMenu>li>a {
+            font-size: 1.1em;
+            color: #fff;
+            padding: 20px 60px;
+            font-weight: 600;
+        }
+.contents {
+    width: 1000px;
+    margin: 5% auto;
+}
+    .contents section {
+        margin-top: 60px;
+    }
+    .contents h2 {
+        font-size: 1.5em;
+        line-height: 2.5;
+    }
+    .contents div {
+        margin-top: 20px;
+    }
+    .contents h3 {
+        line-height: 2.2;
+        font-size: 1.2em;
+    }
+    .detail img {
+        float: left;
+        margin-right: 50px;
+        border-radius: 20px;
+    }
+    .detail p {
+        line-height: 2.0;
+        color: #222;
+    }
+    .schedule h3 {
+        font-size: 1.2em;
+    }
+    .schedule ul {
+    }
+    .schedule li {
+        line-height: 1.5;
+        list-style-type: none;
+    }
+
+footer {
+    width: 1200px;
+    height: 100px;
+    border-top: 2px solid #222;
+}
+
+    #bottomMenu {
+        width: 100%;
+        height: 20px;
+        margin-left: 60px;
+    }
+
+    #bottomMenu li {
+        float: left;
+        list-style-type: none;
+        padding: 5px 25px;
+        border-right: 1px solid #222;
+    }
+    #bottomMenu li:last-child {
+        border-right: 0;
+    }
+
+    #bottomMenu a, #bottomMenu a:visited {
+        font-size: 15px;
+        color: #666;
+    }
