@@ -11,14 +11,17 @@ public class Exercise_For1 {
 		Scanner sc = new Scanner(System.in);
 		System.out.print("정수 하나 입력 : ");
 		int dan = sc.nextInt();
-		if(dan < 1 || dan > 9) {
+		if (dan < 1 || dan > 9) {
 			System.out.println("1 ~ 9사이의 양수를 입력하여야 합니다");
 		} else {
-			for(int i = 1; i<=dan;i++) {
-				for(int j=1; j<=dan;j++) {
-					System.out.printf("%dx%d=%2d ", j,i,i*j);
-				}
-				System.out.println();
+//			for(int i = 1; i<=dan;i++) {
+//				for(int j=1; j<=dan;j++) {
+//					System.out.printf("%dx%d=%2d ", j,i,i*j);
+//				}
+//				System.out.println();
+//			}
+			for (int i = 2; i <= 9; i++) {
+				System.out.println(dan + " * " + i + " = " + dan * i);
 			}
 		}
 		sc.close();
