@@ -4,89 +4,57 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.PriorityQueue;
+import java.util.Stack;
 import java.util.StringTokenizer;
-class Pair implements Comparable<Pair> {
-	int first;
-	int second;
+class Pair<T1, T2> {
+	T1 first;
+	T2 second;
 	
-	Pair(int first, int second) {
+	Pair(T1 first, T2 second) {
 		this.first = first;
 		this.second = second;
 	}
 	
-	@Override
-	public int compareTo(Pair o) {
-		if(o.first == this.first) {
-			return o.second - this.second;
-		} else {
-			return o.first - this.first;
-		}
-	}
-	
 }
 public class Main {
-	private static int N;
-	private static int K;
-	private static ArrayList<ArrayList<Integer>> adj = new ArrayList<ArrayList<Integer>>();
-	private static final int INF = 987654321;
-	private static int d[] = new int[100000 + 1];
-	private static PriorityQueue<Pair> pq = new PriorityQueue<Pair>();
-	private static int dp[] = new int[100000 + 1];
-	private static int dfs(int node) {
-		if(node == K) {
-			return 1;
-		}
-		int ret = dp[node];
-		if(ret != -1) return ret;
-		ret = 0;
-		for(int i=0;i<adj.get(node).size();i++) {
-			int adjNode = adj.get(node).get(i);
-			if(d[node] + 1 == d[adjNode]) {
-				ret += dfs(adjNode);
-			}
-		}
-		dp[node] = ret;
-		return ret;
-	}
+	private static String input1, input2;
+	private static Stack<Pair<Character, Integer>> stack = new Stack<>();
 	public static void main(String[] args) throws IOException {
 		// 입력 최적화를 위해서 Scanner 대신에 BufferedReader, StringTokenizer 를
 		// 혼합하는 방식으로 사용함
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
-		N = Integer.parseInt(st.nextToken());
-		K = Integer.parseInt(st.nextToken());
-		for(int i=0;i<=100000;i++) {
-			ArrayList<Integer> child = new ArrayList<Integer>();
-			if(i - 1 >= 0) {
-				child.add(i-1);
+		// StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+		input1 = br.readLine();
+		input2 = br.readLine();
+		for(int i=0;i<input1.length();i++) {
+			int input2Idx = 0;
+			if(!stack.isEmpty()) {
+				input2Idx = stack.lastElement().second;
 			}
-			if(i + 1 <= 100000) {
-				child.add(i + 1);
+			if(input1.charAt(i) != input2.charAt(input2Idx)) {
+				if(input1.charAt(i) != input2.charAt(0)) {
+					stack.push(new Pair<Character, Integer>(input1.charAt(i), 0));
+				} else {
+					input2Idx = 0;
+				}
 			}
-			if(i*2 <= 100000) {
-				child.add(i * 2);
+			if(input1.charAt(i) == input2.charAt(input2Idx)) {
+				stack.push(new Pair<Character, Integer>(input1.charAt(i), input2Idx + 1));
 			}
-			adj.add(child);
-		}
-		Arrays.fill(d, INF);
-		d[N] = 0;
-		pq.add(new Pair(-0, N));
-		while(!pq.isEmpty()) {
-			int cost = -pq.peek().first;
-			int node = pq.peek().second;
-			pq.poll();
-			if(cost > d[node]) continue;
-			for(int i=0;i<adj.get(node).size();i++) {
-				int newNode = adj.get(node).get(i);
-				int newCost = cost + 1;
-				if(newCost < d[newNode]) {
-					d[newNode] = newCost;
-					pq.add(new Pair(-newCost, newNode));
+			while(!stack.isEmpty() && stack.lastElement().second == input2.length()) {
+				for(int t=0;t<input2.length();t++) {
+					stack.pop();
 				}
 			}
 		}
-		Arrays.fill(dp, -1);
-		System.out.println(d[K]);
-		System.out.println(dfs(N));
+		if(stack.isEmpty()) {
+			System.out.println("FRULA");
+		} else {
+			StringBuilder sb = new StringBuilder();
+			for(int i=0;i<stack.size();i++) {
+				sb.append(stack.elementAt(i).first);
+			}
+			System.out.println(sb);
+		}
 	}
 }
