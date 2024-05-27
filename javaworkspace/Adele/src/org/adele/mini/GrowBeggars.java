@@ -5,37 +5,56 @@ import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Random;
 import java.util.Scanner;
+class EmployBeggarPair {
+	public EmployBeggar beggar;
+	public int price;
+	public EmployBeggarPair(EmployBeggar beggar, int price) {
+		this.beggar = beggar;
+		this.price = price;
+	}
+}
 /*
  * 나라
  */
 class Nation extends AutoMoneyMachine {
-	Nation(String name, double mul) {
-		super(name, mul);
+	Nation(String name, double mul, int level) {
+		super(name, mul, level);
 	}
 }
 /*
  * 건물
  */
 class Building extends AutoMoneyMachine {
-	Building(String name, double mul) {
-		super(name, mul);
+	Building(String name, double mul, int level) {
+		super(name, mul, level);
 	}
 }
 /*
  * 고용된 거지
  */
 class EmployBeggar extends AutoMoneyMachine {
-	EmployBeggar(String name, double mul) {
-		super(name, mul);
+	public static final EmployBeggarPair[] WHOLE_EMPLOY_BEGGAR = {
+			new EmployBeggarPair(new EmployBeggar("초급 거지", 1.0, 1), 1000),
+			new EmployBeggarPair(new EmployBeggar("초급 불의 호흡 거지", 1.2, 1), 1200),
+			new EmployBeggarPair(new EmployBeggar("초급 바람의 호흡 거지", 1.4, 1), 1400),
+			new EmployBeggarPair(new EmployBeggar("초급 물의 호흡 거지", 1.7, 1), 1700),
+			new EmployBeggarPair(new EmployBeggar("중급 거지", 2.0, 1), 2000),
+			new EmployBeggarPair(new EmployBeggar("고급 거지", 3.0, 1), 3000),
+			new EmployBeggarPair(new EmployBeggar("특급 거지", 4.0, 1), 4000)
+	};
+	EmployBeggar(String name, double mul, int level) {
+		super(name, mul, level);
 	}
 }
 abstract class AutoMoneyMachine {
 	protected String name;
 	protected double mul;
+	protected int level;
 	
-	AutoMoneyMachine(String name, double mul) {
+	AutoMoneyMachine(String name, double mul, int level) {
 		this.name = name;
 		this.mul = mul;
+		this.level = level;
 	}
 	
 	public String getName() {
@@ -100,7 +119,7 @@ class Beggar {
 	 */
 	private long lastCalcMillis;
 	private long money;
-	private AutoMoneyMachine[][] machines; // 1행 고용된 거지, 2행 건물, 3행 나라
+	private ArrayList<AutoMoneyMachine> machines;
 	
 	private Inventory inventory;
 	
@@ -123,12 +142,17 @@ class Beggar {
 		this.gakseolitaryeongMinMoney = 50;
 		this.gakseolitaryeongMaxMoney = 100;
 		this.gakseolitaryeongLevel = 1;
-		machines = new AutoMoneyMachine[3][100];
+		machines = new ArrayList<>();
 		inventory = new Inventory();
 	}
 	
 	public boolean isFirst() {
 		return name == null && age == 0;
+	}
+	
+	public void setNameAndAge(String name, int age) {
+		this.name = name;
+		this.age = age;
 	}
 	
 	public void calcAutoMoney() {
@@ -138,13 +162,12 @@ class Beggar {
 			}
 			long curTime = System.currentTimeMillis();
 			long durationSeconds = (curTime - lastCalcMillis) / 1000;
+			lastCalcMillis = System.currentTimeMillis();
 			double sum = 0.0;
-			for(int i=0;i<machines.length;i++) {
-				for(int j=0;j<machines[i].length;j++) {
-					AutoMoneyMachine machine = machines[i][j];
-					if(machine != null) {
-						sum += durationSeconds * machine.getMul();
-					}
+			for(int i=0;i<machines.size();i++) {
+				AutoMoneyMachine machine = machines.get(i);
+				if(machine != null) {
+					sum += durationSeconds * machine.getMul();
 				}
 			}
 			money += sum;
@@ -162,10 +185,11 @@ class Beggar {
 	}
 	
 	public void showMoney() {
+		calcAutoMoney();
 		System.out.println("당신은 현재 "+formatMoney(money)+"원 있습니다.");
 	}
 	
-	private String formatMoney(long m) {
+	public static String formatMoney(long m) {
 		String mString = m + "";
 		ArrayList<String> tokens = new ArrayList<>();
 		int endIdx = mString.length();
@@ -197,6 +221,16 @@ class Beggar {
 			System.out.println("각설이 타령을 보유하고 있는지 확인해주세요.");
 		}
 	}
+	
+	public void hireBeggarIfPossible(EmployBeggar employ, int price) {
+		if(money >= price) {
+			machines.add(employ);
+			money -= price;
+			System.out.println("거지를 고용하였습니다.");
+		} else {
+			System.out.println("이 거지를 고용하기에는 돈이 부족합니다.");
+		}
+	}
 }
 public class GrowBeggars {
 	private static Scanner sc = new Scanner(System.in);
@@ -209,7 +243,7 @@ public class GrowBeggars {
 			beggar.calcAutoMoney();
 			System.out.println("메인 메뉴");
 			System.out.println("1. 게임시작");
-			System.out.println("2. 현재 상태 보기");
+			System.out.println("2. 게임 초기화");
 			System.out.println("3. 게임종료");
 			System.out.print("당신의 선택 > ");
 			int number = getNumberInput();
@@ -234,6 +268,7 @@ public class GrowBeggars {
 		}
 		System.out.print("거지의 나이를 입력해주세요 > ");
 		int age = getNumberInput();
+		beggar.setNameAndAge(input, age);
 	}
 	
 	private static int getNumberInput() {
@@ -263,7 +298,8 @@ public class GrowBeggars {
 			System.out.println("7. 나라 사기");
 			System.out.println("8. 랜덤박스 열기");
 			System.out.println("9. 인벤토리 열기");
-			System.out.println("10. 게임종료");
+			System.out.println("10. 현재 상태 보기");
+			System.out.println("11. 게임종료");
 			int number = getNumberInput();
 			if(number == 1) {
 				System.out.println("당신은 구걸을 하였습니다.");
@@ -271,6 +307,32 @@ public class GrowBeggars {
 				beggar.showMoney();
 			} else if(number == 2) {
 				beggar.gakseolitaryeong();
+				beggar.showMoney();
+			} else if(number == 3) {
+				hireBeggar(beggar);
+			}
+		}
+	}
+	
+	private static void hireBeggar(Beggar beggar) {
+		while(true) {
+			beggar.showMoney();
+			System.out.println("당신은 거지를 고용할 수 있습니다.");
+			System.out.println("어떤 거지를 고용하시겠습니까?");
+			for(int i=0;i<EmployBeggar.WHOLE_EMPLOY_BEGGAR.length;i++) {
+				EmployBeggar employ = EmployBeggar.WHOLE_EMPLOY_BEGGAR[i].beggar;
+				int price = EmployBeggar.WHOLE_EMPLOY_BEGGAR[i].price;
+				System.out.println((i+1)+". "+employ.name + " 배율: "+employ.mul + " 가격: " + Beggar.formatMoney(price));
+			}
+			System.out.println((EmployBeggar.WHOLE_EMPLOY_BEGGAR.length + 1) + ". 그만 고용하기");
+			System.out.print("당신의 선택은? > ");
+			int number = getNumberInput();
+			if(number == EmployBeggar.WHOLE_EMPLOY_BEGGAR.length + 1) {
+				break;
+			} else if(number >= 1 && number < EmployBeggar.WHOLE_EMPLOY_BEGGAR.length + 1){
+				beggar.hireBeggarIfPossible(EmployBeggar.WHOLE_EMPLOY_BEGGAR[number - 1].beggar, EmployBeggar.WHOLE_EMPLOY_BEGGAR[number - 1].price);
+			} else {
+				System.out.println("잘못된 입력입니다.");
 			}
 		}
 	}
