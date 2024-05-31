@@ -1,46 +1,43 @@
 package org.adele.mini.model;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.adele.mini.Constants.Item;
+
 /*
  * 유저가 가지고 있는 아이템
  */
 public class Inventory {
-	private int gakseolitaryeongCount; // 각설이타령 갯수
-	private int begFeverCount;// 구걸 피버 갯수
+	private Map<Item, Integer> items;
 
 	public Inventory() {
-		gakseolitaryeongCount = 0;
-		begFeverCount = 0;
+		items = new HashMap<>();
 	}
-
-	public int getGakseolitaryeongCount() {
-		return gakseolitaryeongCount;
+	
+	public int getCount(Item item) {
+		if(items.containsKey(item)) {
+			return items.get(item);
+		}
+		return 0;
 	}
-
-	public int getBegFeverCount() {
-		return begFeverCount;
-	}
-
-	public boolean useGakseolitaryeong() {
-		if (gakseolitaryeongCount > 0) {
-			gakseolitaryeongCount--;
-			return true;
+	
+	public boolean useItem(Item item) {
+		if(items.containsKey(item)) {
+			if(items.get(item) > 0) {
+				items.put(item, items.get(item) - 1);
+				return true;
+			}
 		}
 		return false;
 	}
-
-	public boolean useBegFever() {
-		if (begFeverCount > 0) {
-			begFeverCount--;
-			return true;
+	
+	public void addItem(Item item, int count) {
+		if(items.containsKey(item)) {
+			items.put(item, items.get(item) + count);
+		} else {
+			items.put(item, count);
 		}
-		return false;
 	}
-
-	public void addGakseolitaryeong(int count) {
-		gakseolitaryeongCount += count;
-	}
-
-	public void addBegFever(int count) {
-		begFeverCount += count;
-	}
+	
 }

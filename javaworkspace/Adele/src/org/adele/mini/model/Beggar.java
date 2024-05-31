@@ -2,7 +2,7 @@ package org.adele.mini.model;
 
 import java.util.ArrayList;
 
-import org.adele.mini.CONSTANT;
+import org.adele.mini.Constants;
 
 /*
  * 유저 정보를 담는 거지 POJO
@@ -24,18 +24,36 @@ public class Beggar {
 	private int gakseolitaryeongMaxMoney; // 각설이타령을 통해 벌 수 있는 최대한의 돈
 	private int gakseolitaryeongUpgradePrice; // 각설이타령 업그레이드 비용
 	
+	private int level;
+	private int maxHp;
+	private int curHp;
+	private double evasionRate;
+	private int minHitPoint;
+	private int maxHitPoint;
+	private int curExp;
+	private int requireExp;
+	
 	public void init() {
 		this.name = null;
 		this.age = 0;
 		this.money = 0;
-		this.begMinMoney = CONSTANT.INIT_BEG_MIN_MONEY;
-		this.begMaxMoney = CONSTANT.INIT_BEG_MAX_MONEY;
-		this.begUpgradePrice = CONSTANT.INIT_BEG_UPGRADE_PRICE;
-		this.gakseolitaryeongMinMoney = CONSTANT.INIT_GAKSEOLITARYEONG_MIN_MONEY;
-		this.gakseolitaryeongMaxMoney = CONSTANT.INIT_GAKSEOLITARYEONG_MAX_MONEY;
-		this.gakseolitaryeongUpgradePrice = CONSTANT.INIT_GAKSEOLITARYEONG_UPGRADE_PRICE;
+		this.begMinMoney = Constants.INIT_BEG_MIN_MONEY;
+		this.begMaxMoney = Constants.INIT_BEG_MAX_MONEY;
+		this.begUpgradePrice = Constants.INIT_BEG_UPGRADE_PRICE;
+		this.gakseolitaryeongMinMoney = Constants.INIT_GAKSEOLITARYEONG_MIN_MONEY;
+		this.gakseolitaryeongMaxMoney = Constants.INIT_GAKSEOLITARYEONG_MAX_MONEY;
+		this.gakseolitaryeongUpgradePrice = Constants.INIT_GAKSEOLITARYEONG_UPGRADE_PRICE;
 		machines = new ArrayList<>();
 		inventory = new Inventory();
+		
+		level = 1;
+		maxHp = 100;
+		curHp = 100;
+		evasionRate = 0.2;
+		minHitPoint = 20;
+		maxHitPoint = 40;
+		curExp = 0;
+		requireExp = 50;
 	}
 	
 	public String getName() {
@@ -124,6 +142,70 @@ public class Beggar {
 
 	public void setGakseolitaryeongUpgradePrice(int gakseolitaryeongUpgradePrice) {
 		this.gakseolitaryeongUpgradePrice = gakseolitaryeongUpgradePrice;
+	}
+
+	public int getLevel() {
+		return level;
+	}
+
+	public void setLevel(int level) {
+		this.level = level;
+	}
+
+	public int getMaxHp() {
+		return maxHp;
+	}
+
+	public void setMaxHp(int maxHp) {
+		this.maxHp = maxHp;
+	}
+
+	public int getCurHp() {
+		return curHp;
+	}
+
+	public void setCurHp(int curHp) {
+		this.curHp = curHp;
+	}
+
+	public double getEvasionRate() {
+		return evasionRate;
+	}
+
+	public void setEvasionRate(double evasionRate) {
+		this.evasionRate = evasionRate;
+	}
+
+	public int getMinHitPoint() {
+		return minHitPoint;
+	}
+
+	public void setMinHitPoint(int minHitPoint) {
+		this.minHitPoint = minHitPoint;
+	}
+
+	public int getMaxHitPoint() {
+		return maxHitPoint;
+	}
+
+	public void setMaxHitPoint(int maxHitPoint) {
+		this.maxHitPoint = maxHitPoint;
+	}
+
+	public int getCurExp() {
+		return curExp;
+	}
+
+	public void setCurExp(int curExp) {
+		this.curExp = curExp;
+	}
+
+	public int getRequireExp() {
+		return requireExp;
+	}
+
+	public void setRequireExp(int requireExp) {
+		this.requireExp = requireExp;
 	}
 
 }

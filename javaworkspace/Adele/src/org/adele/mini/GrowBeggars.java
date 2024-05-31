@@ -7,18 +7,21 @@ package org.adele.mini;
  * class GrowBeggarsView: 게임의 입출력을 담당하는 View, 일단 System.out.println으로 구현함
  */
 
-import java.util.Scanner;
-
+import org.adele.mini.controller.GrowBeggarsBattleController;
 import org.adele.mini.controller.GrowBeggarsIntroController;
 import org.adele.mini.controller.GrowBeggarsMainController;
+import org.adele.mini.gameinput.ScannerInput;
+import org.adele.mini.gameoutput.SystemOutput;
 
 public class GrowBeggars {
+	private static GrowBeggarsBattleController battleController;
 	private static GrowBeggarsMainController mainController;
 	private static GrowBeggarsIntroController introController;
 	public static void main(String[] args) {
-		GrowBeggarsView view = new GrowBeggarsView(new Scanner(System.in));
+		GrowBeggarsView view = new GrowBeggarsView(new ScannerInput(), new SystemOutput());
 		ManageBeggar beggar = new ManageBeggar();
-		mainController = new GrowBeggarsMainController(beggar, view);
+		battleController = new GrowBeggarsBattleController(beggar, view);
+		mainController = new GrowBeggarsMainController(beggar, view, battleController);
 		introController = new GrowBeggarsIntroController(beggar, view, mainController);
 		introController.run();
 	}

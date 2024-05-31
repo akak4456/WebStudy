@@ -3,6 +3,7 @@ package org.adele.mini;
 import java.util.ArrayList;
 import java.util.Random;
 
+import org.adele.mini.Constants.Item;
 import org.adele.mini.model.AutoMoneyMachine;
 import org.adele.mini.model.Beggar;
 import org.adele.mini.model.EmployBeggar;
@@ -52,12 +53,8 @@ public class ManageBeggar {
 		return (new Random()).nextInt(beggar.getBegMaxMoney() - beggar.getBegMinMoney() + 1) + beggar.getBegMinMoney();
 	}
 	
-	public boolean useBegFever() {
-		return beggar.getInventory().useBegFever();
-	}
-	
-	public boolean useGakseolitaryeong() {
-		return beggar.getInventory().useGakseolitaryeong();
+	public boolean useItem(Item item) {
+		return beggar.getInventory().useItem(item);
 	}
 	
 	public long getMoney() {
@@ -70,17 +67,38 @@ public class ManageBeggar {
 		beggar.setMoney(beggar.getMoney() + earnMoney);
 	}
 	
+	public Beggar getBeggar() {
+		return beggar;
+	}
+	
+	/*
+	 * 레벨업시 true 리턴
+	 */
+	public boolean addExp(int earnExp) {
+		beggar.setCurExp(beggar.getCurExp() + earnExp);
+		if(beggar.getCurExp() >= beggar.getRequireExp()) {
+			beggar.setLevel(beggar.getLevel() + 1);
+			beggar.setCurExp(beggar.getCurExp() - beggar.getRequireExp());
+			beggar.setRequireExp((int)(beggar.getRequireExp() * 1.2));
+			return true;
+		}
+		return false;
+	}
+	
+	public void loseExp(int loseExp) {
+		beggar.setCurExp(beggar.getCurExp() - loseExp);
+		if(beggar.getCurExp() < 0) {
+			beggar.setCurExp(0);
+		}
+	}
+	
 	public int getEarnGakseolitaryeongMoney() {
 		return (new Random()).nextInt(beggar.getGakseolitaryeongMaxMoney() - beggar.getGakseolitaryeongMinMoney() + 1)
 				+ beggar.getGakseolitaryeongMinMoney();
 	}
 	
-	public int getFeverCount() {
-		return beggar.getInventory().getBegFeverCount();
-	}
-	
-	public int getGakseolitaryeongCount() {
-		return beggar.getInventory().getGakseolitaryeongCount();
+	public int getItemCount(Item item) {
+		return beggar.getInventory().getCount(item);
 	}
 	
 	private void calcAutoMoney() {
@@ -131,9 +149,9 @@ public class ManageBeggar {
 	public boolean upgradeBegMoney() {
 		if (beggar.getMoney() >= beggar.getBegUpgradePrice()) {
 			beggar.setMoney(beggar.getMoney() - beggar.getBegUpgradePrice());
-			beggar.setBegMinMoney((int) ((beggar.getBegMinMoney() + CONSTANT.UPGRADE_BEG_ADD_MIN_NUMBER) * CONSTANT.UPGRADE_BEG_MIN_MUL));
-			beggar.setBegMaxMoney((int) ((beggar.getBegMaxMoney() + CONSTANT.UPGRADE_BEG_ADD_MAX_NUMBER) * CONSTANT.UPGRADE_BEG_MAX_MUL));
-			beggar.setBegUpgradePrice((int) (beggar.getBegUpgradePrice() * CONSTANT.UPGRADE_BEG_PRICE_MUL));
+			beggar.setBegMinMoney((int) ((beggar.getBegMinMoney() + Constants.UPGRADE_BEG_ADD_MIN_NUMBER) * Constants.UPGRADE_BEG_MIN_MUL));
+			beggar.setBegMaxMoney((int) ((beggar.getBegMaxMoney() + Constants.UPGRADE_BEG_ADD_MAX_NUMBER) * Constants.UPGRADE_BEG_MAX_MUL));
+			beggar.setBegUpgradePrice((int) (beggar.getBegUpgradePrice() * Constants.UPGRADE_BEG_PRICE_MUL));
 			return true;
 		} else {
 			return false;
@@ -155,9 +173,9 @@ public class ManageBeggar {
 	public boolean upgradeGakseolitaryeong() {
 		if (beggar.getMoney() >= beggar.getGakseolitaryeongUpgradePrice()) {
 			beggar.setMoney(beggar.getMoney() - beggar.getGakseolitaryeongUpgradePrice());
-			beggar.setGakseolitaryeongMinMoney((int) ((beggar.getGakseolitaryeongMinMoney() + CONSTANT.UPGRADE_GAKSEOLITARYEONG_ADD_MIN_NUMBER) * CONSTANT.UPGRADE_GAKSEOLITARYEONG_MIN_MUL));
-			beggar.setGakseolitaryeongMaxMoney((int) ((beggar.getGakseolitaryeongMaxMoney() + CONSTANT.UPGRADE_GAKSEOLITARYEONG_ADD_MAX_NUMBER) * CONSTANT.UPGRADE_GAKSEOLITARYEONG_MAX_MUL));
-			beggar.setGakseolitaryeongUpgradePrice((int) (beggar.getGakseolitaryeongUpgradePrice() * CONSTANT.UPGRADE_GAKSEOLITARYEONG_PRICE_MUL));
+			beggar.setGakseolitaryeongMinMoney((int) ((beggar.getGakseolitaryeongMinMoney() + Constants.UPGRADE_GAKSEOLITARYEONG_ADD_MIN_NUMBER) * Constants.UPGRADE_GAKSEOLITARYEONG_MIN_MUL));
+			beggar.setGakseolitaryeongMaxMoney((int) ((beggar.getGakseolitaryeongMaxMoney() + Constants.UPGRADE_GAKSEOLITARYEONG_ADD_MAX_NUMBER) * Constants.UPGRADE_GAKSEOLITARYEONG_MAX_MUL));
+			beggar.setGakseolitaryeongUpgradePrice((int) (beggar.getGakseolitaryeongUpgradePrice() * Constants.UPGRADE_GAKSEOLITARYEONG_PRICE_MUL));
 			return true;
 		} else {
 			return false;
@@ -167,37 +185,27 @@ public class ManageBeggar {
 	public boolean upgradeMachine(AutoMoneyMachine machine) {
 		if (beggar.getMoney() >= machine.getUpgradePrice()) {
 			beggar.setMoney(beggar.getMoney() - machine.getUpgradePrice());
-			machine.setMul((machine.getMul() + CONSTANT.UPGRADE_MACHINE_MUL_ADD_NUMBER) * CONSTANT.UPGRADE_MACHINE_MUL_MUL);
-			machine.setUpgradePrice((int) (machine.getUpgradePrice() * CONSTANT.UPGRADE_MACHINE_PRICE_MUL));
+			machine.setMul((machine.getMul() + Constants.UPGRADE_MACHINE_MUL_ADD_NUMBER) * Constants.UPGRADE_MACHINE_MUL_MUL);
+			machine.setUpgradePrice((int) (machine.getUpgradePrice() * Constants.UPGRADE_MACHINE_PRICE_MUL));
 			return true;
 		} else {
 			return false;
 		}
 	}
 	
-	public boolean buyBegFever() {
-		if (beggar.getMoney() >= CONSTANT.BEG_FEVER_PRICE) {
-			beggar.setMoney(beggar.getMoney() - CONSTANT.BEG_FEVER_PRICE);
-			beggar.getInventory().addBegFever(CONSTANT.BEG_FEVER_ITEM_BUNDLE_SIZE);
+	public boolean buyItem(Item item) {
+		if(beggar.getMoney() >= item.getItemPrice()) {
+			beggar.setMoney(beggar.getMoney() - item.getItemPrice());
+			beggar.getInventory().addItem(item, item.getItemBundleSize());
 			return true;
 		} else {
 			return false;
 		}
 	}
 	
-	public boolean buyGakseolitaryeong() {
-		if (beggar.getMoney() >= CONSTANT.GAKSEOLITARYEONG_PRICE) {
-			beggar.setMoney(beggar.getMoney() - CONSTANT.GAKSEOLITARYEONG_PRICE);
-			beggar.getInventory().addGakseolitaryeong(CONSTANT.GAKSEOLITARYEONG_ITEM_BUNDLE_SIZE);
-			return true;
-		} else {
-			return false;
-		}
-	}
-	
-	public boolean containMachine(AutoMoneyMachine machine) {
+	public boolean containMachine(AutoMoneyMachine.Id machineId) {
 		for (AutoMoneyMachine m : beggar.getMachines()) {
-			if (m.getName().equals(machine.getName())) {
+			if (m.getId().equals(machineId)) {
 				return true;
 			}
 		}
@@ -212,6 +220,61 @@ public class ManageBeggar {
 		} else {
 			return false;
 		}
+	}
+	
+	public int getCurHp() {
+		return beggar.getCurHp();
+	}
+	
+	/*
+	 * 전쟁을 처음 시작할 때에는 항상 풀피여야 한다.
+	 */
+	public void initHp() {
+		beggar.setCurHp(beggar.getMaxHp());
+	}
+	
+	public int getMinHitPoint() {
+		return beggar.getMinHitPoint();
+	}
+	
+	public int getMaxHitPoint() {
+		return beggar.getMaxHitPoint();
+	}
+
+	public int getLevel() {
+		return beggar.getLevel();
+	}
+	
+	public int getRemainExp() {
+		return beggar.getRequireExp() - beggar.getCurExp();
+	}
+
+	public double getEvasionRate() {
+		return beggar.getEvasionRate();
+	}
+	
+	public void addHpFromPosion() {
+		int addedHp = beggar.getCurHp() + Constants.ADDED_HP_FROM_HP_POSION;
+		if(addedHp > beggar.getMaxHp()) {
+			addedHp = beggar.getMaxHp();
+		}
+		beggar.setCurHp(addedHp);
+	}
+	
+	/*
+	 * hp 가 0이하이면 true 를 반환해 죽었음을 나타낸다.
+	 */
+	public boolean loseHp(int hitPoint) {
+		beggar.setCurHp(beggar.getCurHp() - hitPoint);
+		return beggar.getCurHp() <= 0;
+	}
+
+	public int getCurExp() {
+		return beggar.getCurExp();
+	}
+
+	public int getMaxHp() {
+		return beggar.getMaxHp();
 	}
 	
 }

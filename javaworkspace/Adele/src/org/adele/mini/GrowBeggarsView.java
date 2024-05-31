@@ -5,16 +5,25 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+import org.adele.mini.Constants.Item;
+import org.adele.mini.gameinput.GameInput;
+import org.adele.mini.gameoutput.GameOutput;
+import org.adele.mini.model.AutoMoneyMachine;
+import org.adele.mini.model.Beggar;
+import org.adele.mini.model.Building;
 import org.adele.mini.model.EmployBeggar;
+import org.adele.mini.model.Nation;
 
 public class GrowBeggarsView {
-	private Scanner sc;
+	private GameInput sc;
+	private GameOutput output;
 	private Map<String, Map<String, String>> lang;
 	public static final String LANG_KO = "ko";
 	public static final String LANG_EN = "en";
 	private String curLang = LANG_KO;
-	public GrowBeggarsView(Scanner sc) {
+	public GrowBeggarsView(GameInput sc, GameOutput output) {
 		this.sc = sc;
+		this.output = output;
 		lang = new HashMap<>();
 		initLang(LANG_KO);
 		initLang(LANG_EN);
@@ -48,8 +57,9 @@ public class GrowBeggarsView {
 			innerLangData.put("choiceGameMenu_7", "5. 아이템 사기\n");
 			innerLangData.put("choiceGameMenu_8", "6. 건물 사기\n");
 			innerLangData.put("choiceGameMenu_9", "7. 나라 사기\n");
-			innerLangData.put("choiceGameMenu_10", "8. 현재 상태 보기\n");
-			innerLangData.put("choiceGameMenu_11", "9. 게임종료\n");
+			innerLangData.put("choiceGameMenu_13", "8. 거지력 뽐내기\n");
+			innerLangData.put("choiceGameMenu_10", "9. 현재 상태 보기\n");
+			innerLangData.put("choiceGameMenu_11", "10. 게임종료\n");
 			innerLangData.put("choiceGameMenu_12", "어떤 행위를 하시겠습니까?\n");
 			
 			innerLangData.put("showBegResult_1", "당신은 구걸을 하였습니다.\n");
@@ -111,15 +121,11 @@ public class GrowBeggarsView {
 			
 			innerLangData.put("showNotContinueMachineUpgrade_1", "%s 업그레이드를 진행하지 않았습니다.\n");
 			
-			innerLangData.put("buyItem_1", "1. 구걸 피버 %s개 구입(현재 %s개 보유) 가격: %s원\n");
-			innerLangData.put("buyItem_2", "2. 각설이타령 %s개 구입(현재 %s개 보유) 가격: %s원\n");
-			innerLangData.put("buyItem_3", "3. 아이템 구입 종료\n");
+			innerLangData.put("buyItem_1", "%s. %s %s개 구입(현재 %s개 보유) 가격: %s원\n");
+			innerLangData.put("buyItem_2", "%s. 아이템 구입 종료\n");
 			
-			innerLangData.put("showBuyBegFeverResult_1", "구걸 피버를 %s개 샀습니다.\n");
-			innerLangData.put("showBuyBegFeverResult_2", "구걸 피버를 살 돈이 없습니다.\n");
-			
-			innerLangData.put("showBuyGakseolitaryeongResult_1", "각설이 타령을 %s개 샀습니다.\n");
-			innerLangData.put("showBuyGakseolitaryeongResult_2", "각설이 타령을 살 돈이 없습니다.\n");
+			innerLangData.put("showBuyItemResult_1", "%s을(를) %s개 샀습니다.\n");
+			innerLangData.put("showBuyItemResult_2", "%s을(를) 살 돈이 없습니다.\n");
 			
 			innerLangData.put("buyBuilding_1", "당신은 빌딩을 살 수 있습니다.\n");
 			innerLangData.put("buyBuilding_2", "어떤 빌딩을 사시겠습니까?\n");
@@ -140,8 +146,7 @@ public class GrowBeggarsView {
 			innerLangData.put("showBegInfo_4", "당신은 각설이타령을 통해 최소 %s원 최대 %s원 벌고 있습니다.\n");
 			innerLangData.put("showBegInfo_5", "현재 각설이타령 업그레이드 비용은 %s원 입니다.\n");
 			innerLangData.put("showBegInfo_6", "당신이 가지고 있는 아이템은 다음과 같습니다.\n");
-			innerLangData.put("showBegInfo_7", "구걸 피버: %s개\n");
-			innerLangData.put("showBegInfo_8", "각설이타령: %s개\n");
+			innerLangData.put("showBegInfo_7", "%s: %s개\n");
 			innerLangData.put("showBegInfo_9", "당신이 고용한 거지는 다음과 같습니다.\n");
 			innerLangData.put("showBegInfo_10", "고용한 거지가 없습니다.\n");
 			innerLangData.put("showBegInfo_11", "%s\n");
@@ -151,6 +156,8 @@ public class GrowBeggarsView {
 			innerLangData.put("showBegInfo_15", "구입한 빌딩이 없습니다.\n");
 			innerLangData.put("showBegInfo_16", "당신이 구입한 나라는 다음과 같습니다.\n");
 			innerLangData.put("showBegInfo_17", "구입한 나라가 없습니다.\n");
+			innerLangData.put("showBegInfo_18", "당신은 %s레벨이며 다음 레벨업까지 남은 경험치는 %s입니다.\n");
+			innerLangData.put("showBegInfo_19", "당신은 최대 체력은 %s입니다.\n");
 			
 			innerLangData.put("showReset_1", "게임을 초기화 합니다.\n");
 			
@@ -163,6 +170,53 @@ public class GrowBeggarsView {
 			innerLangData.put("showChangeLang_1", "설정할 언어를 선택해주세요.\n");
 			
 			innerLangData.put("changeLang_1", "언어를 변경하였습니다!\n");
+			
+			innerLangData.put("choiceBattleMenu_1", "당신은 거지력을 뽐내고자 합니다!\n");
+			innerLangData.put("choiceBattleMenu_2", "당신은 마침 %s을(를) 만났습니다\n");
+			innerLangData.put("choiceBattleMenu_3", "싸우시겠습니까? (Y/N) > ");
+			
+			innerLangData.put("showRun_1", "당신은 도망가기를 선택했습니다.\n");
+			
+			innerLangData.put("showWarMyTurn_1", "당신의 현재 체력은 %s 입니다.\n");
+			innerLangData.put("showWarMyTurn_2", "%s의 현재 체력은 %s 입니다.\n");
+			innerLangData.put("showWarMyTurn_3", "당신은 공격하거나 회피하기를 통해 회피율을 높일 수 있습니다.\n");
+			innerLangData.put("showWarMyTurn_4", "또한 당신은 포션을 사용할 수도 있고, 회피 무시를 사용해 완전히 공격을 맞지 않을 수도, 도망을 갈 수도 있습니다.\n");
+			innerLangData.put("showWarMyTurn_5", "어떤 행위를 하시겠습니까?\n");
+			innerLangData.put("showWarMyTurn_6", "1. 공격하기\n");
+			innerLangData.put("showWarMyTurn_7", "2. 회피하기\n");
+			innerLangData.put("showWarMyTurn_8", "3. 포션사용하기\n");
+			innerLangData.put("showWarMyTurn_9", "4. 공격무시사용하기\n");
+			innerLangData.put("showWarMyTurn_10", "5. 도망가기\n");
+			
+			innerLangData.put("showUseHpPosion_1", "당신은 포션을 사용하였습니다.\n");
+			innerLangData.put("showUseHpPosion_2", "회복된 체력은 %s입니다.\n");
+			
+			innerLangData.put("showUseEvasion_1", "당신은 회피하기를 시도합니다.\n");
+			
+			innerLangData.put("showNotUseHpPosition_1", "당신은 현재 HP 포션을 가지고 있지 않습니다.\n");
+			
+			innerLangData.put("showUseIgnoreAttack_1", "당신은 공격무시를 사용하였습니다.\n");
+			
+			innerLangData.put("showNotUseIgnoreAttack_1", "당신은 현재 공격무시를 가지고 있지 않습니다.\n");
+			
+			innerLangData.put("showMyAttack_1", "당신의 공격이 통했습니다!\n");
+			innerLangData.put("showMyAttack_2", "당신은 %s에게 %s 정도의 피해를 입혔습니다.\n");
+			innerLangData.put("showMyAttack_3", "당신의 공격을 몬스터가 피했습니다!\n");
+			
+			innerLangData.put("showWarWin_1", "당신은 %s을(를) 무찔렀습니다.\n");
+			innerLangData.put("showWarWin_2", "당신은 돈을 %s원, 경험치를 %s 만큼 얻었습니다.\n");
+			
+			innerLangData.put("showLevelUp_1", "당신은 레벨업을 하였습니다.\n");
+			innerLangData.put("showLevelUp_2", "당신의 현재 레벨은 %s입니다.\n");
+			
+			innerLangData.put("showMobAttackResult_1", "%s은(는) 공격을 시도합니다.\n");
+			innerLangData.put("showMobAttackResult_2", "%s의 공격이 들어가 %s 정도의 피해를 입었습니다.\n");
+			innerLangData.put("showMobAttackResult_3", "당신은 %s의 공격을 피했습니다.\n");
+			
+			innerLangData.put("showWarLose_1", "당신은 %s에게 졌습니다.\n");
+			innerLangData.put("showWarLose_2", "당신은 %s만큼의 경험치를 잃었습니다.\n");
+			innerLangData.put("showWarLose_3", "당신의 현재 경험치는 %s입니다.\n");
+			
 		} else if(langCode.equals(LANG_EN)) {
 			innerLangData.put("common_choice", "Your choice? > ");
 			
@@ -189,8 +243,9 @@ public class GrowBeggarsView {
 			innerLangData.put("choiceGameMenu_7", "5. Buying items\n");
 			innerLangData.put("choiceGameMenu_8", "6. Building fraud\n");
 			innerLangData.put("choiceGameMenu_9", "7. Buying country\n");
-			innerLangData.put("choiceGameMenu_10", "8. View current status\n");
-			innerLangData.put("choiceGameMenu_11", "9. Game over\n");
+			innerLangData.put("choiceGameMenu_13", "8. Show off your beggar skills\n");
+			innerLangData.put("choiceGameMenu_10", "9. View current status\n");
+			innerLangData.put("choiceGameMenu_11", "10. Game over\n");
 			innerLangData.put("choiceGameMenu_12", "What action would you like to take?\n");
 			
 			innerLangData.put("showBegResult_1", "You begged.\n");
@@ -252,15 +307,11 @@ public class GrowBeggarsView {
 			
 			innerLangData.put("showNotContinueMachineUpgrade_1", "The %s upgrade did not proceed.\n");
 			
-			innerLangData.put("buyItem_1", "1. Purchase %s Begging Fever (currently owns %s) Price: %s won\n");
-			innerLangData.put("buyItem_2", "2. Purchase %s pieces of gakseolitaryeong (currently owns %s pieces) Price: %s won\n");
-			innerLangData.put("buyItem_3", "3. End of item purchase\n");
+			innerLangData.put("buyItem_1", "%s. Purchase %s %s (currently owns %s) Price: %s won\n");
+			innerLangData.put("buyItem_2", "%s. Item purchase ends\n");
 			
-			innerLangData.put("showBuyBegFeverResult_1", "You bought %s Begging Fever.\n");
-			innerLangData.put("showBuyBegFeverResult_2", "You don't have money to buy begging fever.\n");
-			
-			innerLangData.put("showBuyGakseolitaryeongResult_1", "You bought %s gakseolitaryeong.\n");
-			innerLangData.put("showBuyGakseolitaryeongResult_2", "You don't have money to buy gakseolitaryeong.\n");
+			innerLangData.put("showBuyItemResult_1", "You bought %s of %s.\n");
+			innerLangData.put("showBuyItemResult_2", "You don't have money to buy %s.\n");
 			
 			innerLangData.put("buyBuilding_1", "You can buy a building.\n");
 			innerLangData.put("buyBuilding_2", "Which building would you like to buy?\n");
@@ -281,8 +332,7 @@ public class GrowBeggarsView {
 			innerLangData.put("showBegInfo_4", "You earn a minimum of %s won and a maximum of %s won through gakseolitaryeong.\n");
 			innerLangData.put("showBegInfo_5", "The current upgrade cost for Gakseolitaryeong is %s won.\n");
 			innerLangData.put("showBegInfo_6", "The items you have are.\n");
-			innerLangData.put("showBegInfo_7", "Begging Fever: %s\n");
-			innerLangData.put("showBegInfo_8", "Gakseolitaryeong: %s\n");
+			innerLangData.put("showBegInfo_7", "%s: %s\n");
 			innerLangData.put("showBegInfo_9", "Here are the beggars you hired.\n");
 			innerLangData.put("showBegInfo_10", "There are no hired beggars.\n");
 			innerLangData.put("showBegInfo_11", "%s\n");
@@ -292,6 +342,8 @@ public class GrowBeggarsView {
 			innerLangData.put("showBegInfo_15", "No buildings have been purchased.\n");
 			innerLangData.put("showBegInfo_16", "The country you purchased from is\n");
 			innerLangData.put("showBegInfo_17", "There are no countries in which it was purchased.\n");
+			innerLangData.put("showBegInfo_18", "You are at level %s and you have %s experience remaining until your next level up.\n");
+			innerLangData.put("showBegInfo_19", "You have %s maximum health.\n");
 			
 			innerLangData.put("showReset_1", "Reset the game.\n");
 			
@@ -308,29 +360,29 @@ public class GrowBeggarsView {
 		lang.put(langCode, innerLangData);
 	}
 	public void hello() {
-		System.out.println(".,,,,,,,,...,,.,,,,..,.....,,,,,,,,.....,..:!: .,,,,,,,,..........");
-		System.out.println("..,~-,,...,,,.::~-,....,.... ~~-,,...,...;@@@@@~.---,,...,,,......");
-		System.out.println("..*@@@@#$;  .-@@@@@#! ......,@@@@##!   .!@@!~=@$.#@@@@#=:  .......");
-		System.out.println("..;$$#@@@$:#*.!@@##@**@*....-=$#@@@#!$!.@@~..-@@.=$$#@@@*#$.......");
-		System.out.println(",...   !@*:@$  @@~ ,-*@*.,,,.    :@=*@*-@@.,,:@# ..  .#@!@$.,,,,,,");
-		System.out.println(",,,,,, #!=$@$ ,@@,.. *@*.,,,,==**=@**@=.@@*:!#@;.,,,,,@#:@$.,,,,,,");
-		System.out.println("..... ,@!@@@$ ~@@@#;.*@*... ~@@@@@@;!@= ~@@@@@*......;@=~@$. .....");
-		System.out.println("   ...*@!-!@$ !@@@@@@$#* .. .--~:@@-*@= -:*==!:~ ....$@:~@$.      ");
-		System.out.println("... ..$@~ !@= =@* ,!#$#*....... :@@ *@*.@@@@@@@* ...-@#,:@$.......");
-		System.out.println("...  ,$#, -:- ;$~    ~!~ .......#@; :!:.==$@@=!~ .. ;@! ,:~.......");
-		System.out.println(".....  . ..  .   ....   ....... .:..       ##,  .... . ..  .......");
-		System.out.println("................................. ...... . ,, ....................");
-		System.out.println();
+		output.println(".,,,,,,,,...,,.,,,,..,.....,,,,,,,,.....,..:!: .,,,,,,,,..........");
+		output.println("..,~-,,...,,,.::~-,....,.... ~~-,,...,...;@@@@@~.---,,...,,,......");
+		output.println("..*@@@@#$;  .-@@@@@#! ......,@@@@##!   .!@@!~=@$.#@@@@#=:  .......");
+		output.println("..;$$#@@@$:#*.!@@##@**@*....-=$#@@@#!$!.@@~..-@@.=$$#@@@*#$.......");
+		output.println(",...   !@*:@$  @@~ ,-*@*.,,,.    :@=*@*-@@.,,:@# ..  .#@!@$.,,,,,,");
+		output.println(",,,,,, #!=$@$ ,@@,.. *@*.,,,,==**=@**@=.@@*:!#@;.,,,,,@#:@$.,,,,,,");
+		output.println("..... ,@!@@@$ ~@@@#;.*@*... ~@@@@@@;!@= ~@@@@@*......;@=~@$. .....");
+		output.println("   ...*@!-!@$ !@@@@@@$#* .. .--~:@@-*@= -:*==!:~ ....$@:~@$.      ");
+		output.println("... ..$@~ !@= =@* ,!#$#*....... :@@ *@*.@@@@@@@* ...-@#,:@$.......");
+		output.println("...  ,$#, -:- ;$~    ~!~ .......#@; :!:.==$@@=!~ .. ;@! ,:~.......");
+		output.println(".....  . ..  .   ....   ....... .:..       ##,  .... . ..  .......");
+		output.println("................................. ...... . ,, ....................");
+		output.println();
 		displayMsg("hello_1");
 		displayMsg("hello_2");
-		System.out.println();
+		output.println();
 	}
 
 	public int choiceMenu() {
 		displayMsg("choiceMenu_1");
 		displayMsg("choiceMenu_2");
 		displayMsg("choiceMenu_3");
-		System.out.println("3. 언어 설정(language setting)");
+		output.println("3. 언어 설정(language setting)");
 		displayMsg("choiceMenu_4");
 		displayMsg("common_choice");
 		return getNumberInput(1, 4);
@@ -359,11 +411,12 @@ public class GrowBeggarsView {
 		displayMsg("choiceGameMenu_7");
 		displayMsg("choiceGameMenu_8");
 		displayMsg("choiceGameMenu_9");
+		displayMsg("choiceGameMenu_13");
 		displayMsg("choiceGameMenu_10");
 		displayMsg("choiceGameMenu_11");
 		displayMsg("choiceGameMenu_12");
 		displayMsg("common_choice");
-		return getNumberInput(1, 9);
+		return getNumberInput(1, 10);
 	}
 	
 	public void showBegResult(boolean useFever, int earnMoney) {
@@ -391,14 +444,12 @@ public class GrowBeggarsView {
 	public int hireBeggar() {
 		displayMsg("hireBeggar_1");
 		displayMsg("hireBeggar_2");
-		for(int i=0;i<EmployBeggar.WHOLE_EMPLOY_BEGGAR.length;i++) {
-			EmployBeggar employ = EmployBeggar.WHOLE_EMPLOY_BEGGAR[i];
-			int price = employ.getBuyPrice();
-			displayMsg("hireBeggar_3", (i+1), employ.getName(), employ.getMul(), formatMoney(price));
+		for(int i=0;i<Constants.EMPLOY_BEGGAR_CONSTANTS.length;i++) {
+			displayMsg("hireBeggar_3", (i+1), Constants.EMPLOY_BEGGAR_CONSTANTS[i].getName(), Constants.EMPLOY_BEGGAR_CONSTANTS[i].getMul(), formatMoney(Constants.EMPLOY_BEGGAR_CONSTANTS[i].getBuyPrice()));
 		}
-		displayMsg("hireBeggar_4", (EmployBeggar.WHOLE_EMPLOY_BEGGAR.length + 1));
+		displayMsg("hireBeggar_4", (Constants.EMPLOY_BEGGAR_CONSTANTS.length + 1));
 		displayMsg("common_choice");
-		return getNumberInput(1, EmployBeggar.WHOLE_EMPLOY_BEGGAR.length + 1);
+		return getNumberInput(1, Constants.EMPLOY_BEGGAR_CONSTANTS.length + 1);
 	}
 	
 	public void showHireBeggarResult(boolean isHired) {
@@ -484,27 +535,20 @@ public class GrowBeggarsView {
 		displayMsg("showNotContinueMachineUpgrade_1", name);
 	}
 	
-	public int buyItem(int curBegFeverCount, int curGakseolitaryeongCount) {
-		displayMsg("buyItem_1", CONSTANT.BEG_FEVER_ITEM_BUNDLE_SIZE, curBegFeverCount, formatMoney(CONSTANT.BEG_FEVER_PRICE));
-		displayMsg("buyItem_2", CONSTANT.GAKSEOLITARYEONG_ITEM_BUNDLE_SIZE, curGakseolitaryeongCount, formatMoney(CONSTANT.GAKSEOLITARYEONG_PRICE));
-		displayMsg("buyItem_3");
-		displayMsg("common_choice");
-		return getNumberInput(1, 3);
-	}
-	
-	public void showBuyBegFeverResult(boolean result) {
-		if(result) {
-			displayMsg("showBuyBegFeverResult_1",  CONSTANT.BEG_FEVER_ITEM_BUNDLE_SIZE);
-		} else {
-			displayMsg("showBuyBegFeverResult_2");
+	public int buyItem(Beggar beggar) {
+		for(int i=0;i<Constants.ITEM_CONSTANTS.length;i++) {
+			displayMsg("buyItem_1", (i+1), Constants.ITEM_CONSTANTS[i].getName(), Constants.ITEM_CONSTANTS[i].getItemBundleSize(), beggar.getInventory().getCount(Constants.ITEM_CONSTANTS[i]), formatMoney(Constants.ITEM_CONSTANTS[i].getItemPrice()));
 		}
+		displayMsg("buyItem_2", (Constants.ITEM_CONSTANTS.length + 1));
+		displayMsg("common_choice");
+		return getNumberInput(1, Constants.ITEM_CONSTANTS.length + 1);
 	}
 	
-	public void showBuyGakseolitaryeongResult(boolean result) {
+	public void showBuyItemResult(boolean result, String itemName, int itemBundleSize) {
 		if(result) {
-			displayMsg("showBuyGakseolitaryeongResult_1", CONSTANT.GAKSEOLITARYEONG_ITEM_BUNDLE_SIZE);
+			displayMsg("showBuyItemResult_1",  itemName, itemBundleSize);
 		} else {
-			displayMsg("showBuyGakseolitaryeongResult_2");
+			displayMsg("showBuyItemResult_2", itemName);
 		}
 	}
 	
@@ -538,37 +582,42 @@ public class GrowBeggarsView {
 		return getNumberInput(1, names.size() + 1);
 	}
 	
-	public void showBegInfo(
-			String beggarName,
-			int beggarAge,
-			int begMinMoney,
-			int begMaxMoney,
-			int begUpgradePrice,
-			int gakseolitaryeongMinMoney,
-			int gakseolitaryeongMaxMoney,
-			int gakseolitaryeongUpgradePrice,
-			int begFeverCount,
-			int gakseolitaryeongCount,
-			ArrayList<String> employBeggarNames,
-			ArrayList<Double> employBeggarMuls,
-			ArrayList<Integer> employBeggarUpgradePrices,
-			ArrayList<String> buildingNames,
-			ArrayList<Double> buildingMuls,
-			ArrayList<Integer> buildingUpgradePrices,
-			ArrayList<String> nationNames,
-			ArrayList<Double> nationMuls,
-			ArrayList<Integer> nationUpgradePrices
-			) {
-		displayMsg("showBegInfo_1", beggarName, beggarAge);
-		displayMsg("showBegInfo_2", formatMoney(begMinMoney), formatMoney(begMaxMoney));
-		displayMsg("showBegInfo_3", formatMoney(begUpgradePrice));
-		displayMsg("showBegInfo_4", formatMoney(gakseolitaryeongMinMoney), formatMoney(gakseolitaryeongMaxMoney));
-		displayMsg("showBegInfo_5", formatMoney(gakseolitaryeongUpgradePrice));
+	public void showBegInfo(Beggar beggar) {
+		displayMsg("showBegInfo_1", beggar.getName(), beggar.getAge());
+		displayMsg("showBegInfo_2", formatMoney(beggar.getBegMinMoney()), formatMoney(beggar.getBegMaxMoney()));
+		displayMsg("showBegInfo_3", formatMoney(beggar.getBegUpgradePrice()));
+		displayMsg("showBegInfo_4", formatMoney(beggar.getGakseolitaryeongMinMoney()), formatMoney(beggar.getGakseolitaryeongMaxMoney()));
+		displayMsg("showBegInfo_5", formatMoney(beggar.getGakseolitaryeongUpgradePrice()));
 		displayMsg("showBegInfo_6");
-		displayMsg("showBegInfo_7", begFeverCount);
-		displayMsg("showBegInfo_8", gakseolitaryeongCount);
+		for(Item item : Constants.ITEM_CONSTANTS) {
+			displayMsg("showBegInfo_7", item.getName(), beggar.getInventory().getCount(item));
+		}
 
 		displayMsg("showBegInfo_9");
+		ArrayList<String> employBeggarNames = new ArrayList<>();
+		ArrayList<Double> employBeggarMuls = new ArrayList<>();
+		ArrayList<Integer> employBeggarUpgradePrices = new ArrayList<>();
+		ArrayList<String> buildingNames = new ArrayList<>();
+		ArrayList<Double> buildingMuls = new ArrayList<>();
+		ArrayList<Integer> buildingUpgradePrices = new ArrayList<>();
+		ArrayList<String> nationNames = new ArrayList<>();
+		ArrayList<Double> nationMuls = new ArrayList<>();
+		ArrayList<Integer> nationUpgradePrices = new ArrayList<>();
+		for (AutoMoneyMachine machine : beggar.getMachines()) {
+			if (machine instanceof EmployBeggar) {
+				employBeggarNames.add(machine.getName());
+				employBeggarMuls.add(machine.getMul());
+				employBeggarUpgradePrices.add(machine.getUpgradePrice());
+			} else if (machine instanceof Building) {
+				buildingNames.add(machine.getName());
+				buildingMuls.add(machine.getMul());
+				buildingUpgradePrices.add(machine.getUpgradePrice());
+			} else if (machine instanceof Nation) {
+				nationNames.add(machine.getName());
+				nationMuls.add(machine.getMul());
+				nationUpgradePrices.add(machine.getUpgradePrice());
+			}
+		}
 		if(employBeggarNames.isEmpty()) {
 			displayMsg("showBegInfo_10");
 		} else {
@@ -600,6 +649,9 @@ public class GrowBeggarsView {
 				displayMsg("showBegInfo_13", formatMoney(nationUpgradePrices.get(i)));
 			}
 		}
+		
+		displayMsg("showBegInfo_18", beggar.getLevel(), beggar.getRequireExp() - beggar.getCurExp());
+		displayMsg("showBegInfo_19", beggar.getMaxHp());
 	}
 	
 	public void showReset() {
@@ -613,8 +665,8 @@ public class GrowBeggarsView {
 	
 	public int showChangeLang() {
 		displayMsg("showChangeLang_1");
-		System.out.println("1. 한국어");
-		System.out.println("2. English");
+		output.println("1. 한국어");
+		output.println("2. English");
 		displayMsg("common_choice");
 		return getNumberInput(1,2);
 	}
@@ -624,8 +676,93 @@ public class GrowBeggarsView {
 		displayMsg("changeLang_1");
 	}
 	
+	public boolean choiceBattleMenu(String mobName, String artData) {
+		displayMsg("choiceBattleMenu_1");
+		output.println(artData);
+		displayMsg("choiceBattleMenu_2", mobName);
+		displayMsg("choiceBattleMenu_3");
+		return getStringInput().charAt(0) == 'Y';
+	}
+	
+	public void showUseHpPosion(int newHp) {
+		displayMsg("showUseHpPosion_1");
+		displayMsg("showUseHpPosion_2", newHp);
+	}
+	
+	public void showNotUseHpPosion() {
+		displayMsg("showNotUseHpPosition_1");
+	}
+	
+	public void showRun() {
+		displayMsg("showRun_1");
+	}
+	
+	public int showWarMyTurn(int myHp, int mobHp, String mobName) {
+		displayMsg("showWarMyTurn_1", myHp);
+		displayMsg("showWarMyTurn_2", mobName, mobHp);
+		displayMsg("showWarMyTurn_3");
+		displayMsg("showWarMyTurn_4");
+		displayMsg("showWarMyTurn_5");
+		displayMsg("showWarMyTurn_6");
+		displayMsg("showWarMyTurn_7");
+		displayMsg("showWarMyTurn_8");
+		displayMsg("showWarMyTurn_9");
+		displayMsg("common_choice");
+		return getNumberInput(1, 5);
+	}
+	
+	public void showUseEvasion() {
+		displayMsg("showUseEvasion_1");
+	}
+	
+	public void showUseIgnoreAttack() {
+		displayMsg("showUseIgnoreAttack_1");
+	}
+	
+	public void showNotUseIgnoreAttack() {
+		displayMsg("showNotUseIgnoreAttack_1");
+	}
+	
+	public void showMyAttack(boolean result, String mobName, int hitPoint) {
+		if(result) {
+			displayMsg("showMyAttack_1");
+			displayMsg("showMyAttack_2", mobName, hitPoint);
+		} else {
+			displayMsg("showMyAttack_3");
+		}
+	}
+	
+	public void showWarWin(String mobName, int earnMoney, int earnExp) {
+		displayMsg("showWarWin_1", mobName);
+		displayMsg("showWarWin_2", formatMoney(earnMoney), earnExp);
+	}
+	
+	public void showLevelUp(int curLevel) {
+		displayMsg("showLevelUp_1");
+		displayMsg("showLevelUp_2", curLevel);
+	}
+	
+	public void showMobAttackResult(boolean result, String mobName, int hitPoint) {
+		displayMsg("showMobAttackResult_1", mobName);
+		if(result) {
+			displayMsg("showMobAttackResult_2", mobName, hitPoint);
+		} else {
+			displayMsg("showMobAttackResult_3", mobName);
+		}
+	}
+	
+	public void showWarLose(String mobName, int loseExp, int curExp) {
+		displayMsg("showWarLose_1", mobName);
+		displayMsg("showWarLose_2", loseExp);
+		displayMsg("showWarLose_3", curExp);
+	}
+	
+	public Map<String, String> getLangData(String langCd) {
+		return lang.get(langCd);
+	}
+	
 	private void printDivider() {
-		System.out.println("==================================================");
+		output.println("==================================================");
 	}
 	
 	private String formatMoney(long m) {
@@ -653,7 +790,7 @@ public class GrowBeggarsView {
 		Integer ret = null;
 		while (ret == null) {
 			try {
-				ret = Integer.parseInt(sc.nextLine());
+				ret = sc.nextInt();
 			} catch (NumberFormatException e) {
 				showWrongInput();
 				ret = null;
@@ -666,7 +803,7 @@ public class GrowBeggarsView {
 		Integer ret = null;
 		while (ret == null) {
 			try {
-				ret = Integer.parseInt(sc.nextLine());
+				ret = sc.nextInt();
 				if (ret < minInput || ret > maxInput) {
 					showNotRangeInput(minInput, maxInput);
 					ret = null;
@@ -709,9 +846,9 @@ public class GrowBeggarsView {
 			msg = lang.get(LANG_KO).get(key);
 		}
 		if(msg == null) {
-			System.err.println("key " + key +" is not exist");
+			output.printerr("key " + key +" is not exist");
 		} else {
-			System.out.printf(msg , args);
+			output.printf(msg , args);
 		}
 	}
 }
