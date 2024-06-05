@@ -13,4 +13,8 @@ public interface ManageInterface {
 	
 	void deleteStudent(int index);
 	
+	Student searchModifyStudent(String name);
+	
+	int searchIndexByName(String name);
+	
 }

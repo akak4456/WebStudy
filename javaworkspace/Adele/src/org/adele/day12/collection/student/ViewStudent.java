@@ -34,9 +34,9 @@ public class ViewStudent {
 		return new Student(name, firstScore, secondScore);
 	}
 	
-	public String inputStudentName() {
+	public String inputName(String category) {
 		Scanner sc = new Scanner(System.in);
-		System.out.print("이름");
+		System.out.print(category+"할 이름 입력 : ");
 		return sc.next();
 	}
 
@@ -54,5 +54,25 @@ public class ViewStudent {
 		Scanner sc = new Scanner(System.in);
 		System.out.print("수정할 학생 번호");
 		return sc.nextInt();
+	}
+
+	public Student modifyStudent(Student student) {
+		Scanner sc = new Scanner(System.in);
+		System.out.print("수정할 1차 점수 입력 : ");
+		student.setFirstScore(sc.nextInt());
+		System.out.print("수정할 2차 점수 입력 : ");
+		student.setSecondScore(sc.nextInt());
+		return student;
+	}
+	
+	public void showFailStudent(List<Student> stdList) {
+		for(Student student : stdList) {
+			if(student.getFirstScore() < 60) {
+				System.out.println(student.getName() + " 1번째 시험 재시험 대상");
+			} else {
+				System.out.println(student.getName() + " 2번째 시험 재시험 대상");
+				
+			}
+		}
 	}
 }
