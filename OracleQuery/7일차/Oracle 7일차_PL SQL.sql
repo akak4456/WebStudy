@@ -240,3 +240,13 @@ END;
 --  WHEN 값2 THEN 실행문2
 --  WHEN 값3 THEN 실행문3
 --  WHEN 값4 THEN 실행문4
+-- END CASE;
+SAL := FLOOR(SAL / 1000000);
+CASE (SAL / 100)
+    WHEN 0 THEN SLV := 'F';
+    WHEN 1 THEN SLV := 'E';
+    WHEN 2 THEN SLV := 'D';
+    WHEN 3 THEN SLV := 'C';
+    WHEN 4 THEN SLV := 'B';
+    ELSE SLV := 'E';
+END CASE;
