@@ -1,10 +1,12 @@
 package org.kh.library.controller;
 
+import java.util.ArrayList;
+
 import org.kh.library.model.vo.Book;
 
 public interface BookControllerI {
-	public void selectAllBook();
-	public void selectBookOne(int bookNo);
-	public void insertBook(Book book);
-	public void deleteBook(int bookNo);
+	public ArrayList<Book> selectAllBook();
+	public Book selectBookOne(int bookNo);
+	public int insertBook(Book book);
+	public int deleteBook(int bookNo);
 }

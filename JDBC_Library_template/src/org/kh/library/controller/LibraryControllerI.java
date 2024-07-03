@@ -6,7 +6,7 @@ import org.kh.library.model.vo.Library;
 
 public interface LibraryControllerI {
 	public ArrayList<Library> selectAll();
-	public void selectOne(String userId);
-	public void selectOneByName(String bookName);
-	public void insertLibrary(Library library);
+	public Library selectOne(String userId);
+	public Library selectOneByName(String bookName);
+	public int insertLibrary(Library library);
 }
