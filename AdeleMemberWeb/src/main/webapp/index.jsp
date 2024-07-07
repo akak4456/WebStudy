@@ -13,6 +13,7 @@
 			${sessionScope.memberName }님 환영합니다~!
 			<a href="#">마이페이지</a>
 			<a href="#">회원탈퇴</a>
+			<a href="/member/logout.do">로그아웃</a>
 		</c:if>
 		<c:if test="${sessionScope.memberId eq null }">
 			<form action="/member/login.do" method="post">
