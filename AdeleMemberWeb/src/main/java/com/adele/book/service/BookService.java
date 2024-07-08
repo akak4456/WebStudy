@@ -1,27 +1,27 @@
-package com.adele.member.model.service;
+package com.adele.book.service;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
+import com.adele.book.model.dao.BookDAO;
+import com.adele.book.model.vo.Book;
 import com.adele.common.JDBCTemplate;
-import com.adele.member.model.dao.MemberDAO;
-import com.adele.member.model.vo.Member;
 
-public class MemberService {
-
-	private MemberDAO mDao;
+public class BookService {
+	private BookDAO bDAO;
 	
-	public MemberService() {
-		mDao = new MemberDAO();
+	public BookService() {
+		bDAO = new BookDAO();
 	}
 	
-	public int insertMember(Member member) {
+	public List<Book> selectAllBook() {
 		Connection conn = null;
-		int result = 0;
-		
+		List<Book> result = null;
 		try {
 			conn = JDBCTemplate.getConnection();
-			result = mDao.insertMember(conn, member);
+			result = bDAO.selectAllBook(conn);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -39,22 +39,12 @@ public class MemberService {
 		return result;
 	}
 
-	public Member checkLogin(Member member) throws ClassNotFoundException, SQLException {
+	public Book selectBookOne(int bookNo) {
 		Connection conn = null;
-		Member mOne = null;
-		
-		conn = JDBCTemplate.getConnection();
-		mOne = mDao.checkLogin(conn, member);
-		return mOne;
-	}
-
-	public int deleteMember(String memberId) {
-		Connection conn = null;
-		int result = 0;
+		Book result = null;
 		try {
 			conn = JDBCTemplate.getConnection();
-			result = mDao.deleteMember(conn, memberId);
-			// 결과에 따른 커밋/롤백
+			result = bDAO.selectBookOne(bookNo, conn);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -72,13 +62,12 @@ public class MemberService {
 		return result;
 	}
 
-	public Member selectOneById(String memberId) {
+	public int insertBook(Book book) {
 		Connection conn = null;
-		Member member = null;
-		
+		int result = 0;
 		try {
 			conn = JDBCTemplate.getConnection();
-			member = mDao.selectOneById(conn, memberId);
+			result = bDAO.insertBook(book, conn);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -93,24 +82,30 @@ public class MemberService {
 				e.printStackTrace();
 			}
 		}
-		return member;
+		return result;
 	}
 
-	public int updateMember(Member member) {
+	public int deleteBook(int bookNo) {
 		Connection conn = null;
 		int result = 0;
 		
 		try {
 			conn = JDBCTemplate.getConnection();
-			result = mDao.updateMember(conn, member);
+			result = bDAO.deleteBook(bookNo, conn);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		return result;
 	}
-
 }

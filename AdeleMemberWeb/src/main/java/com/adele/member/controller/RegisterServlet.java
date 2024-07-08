@@ -60,7 +60,7 @@ public class RegisterServlet extends HttpServlet {
 			// response.sendRedirect("");
 			// 2. requestDispatcher
 			// request.setAttribute("msg", "성공");
-			// request.getRequestDispatcher("").forward(request, response);
+			// request.getRequestDispatcher("/").forward(request, response);
 			response.sendRedirect("/");
 		} else {
 			// 실패 메시지 출력

@@ -50,4 +50,54 @@ public class MemberDAO {
 		return mOne;
 	}
 
+	public int deleteMember(Connection conn, String memberId) throws SQLException {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "DELETE FROM MEMBER_TBL WHERE MEMBER_ID = ?";
+		pstmt = conn.prepareStatement(query);
+		pstmt.setString(1, memberId);
+		result = pstmt.executeUpdate();
+		pstmt.close();
+		return result;
+	}
+
+	public Member selectOneById(Connection conn, String memberId) throws SQLException {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Member member = null; 
+		String query = "SELECT * FROM MEMBER_TBL WHERE MEMBER_ID = ?";
+		
+		pstmt = conn.prepareStatement(query);
+		pstmt.setString(1, memberId);
+		rset = pstmt.executeQuery();
+		if(rset.next()) {
+			member = new Member();
+			member.setMemberId(rset.getString("MEMBER_ID"));
+			// 비밀번호는 보안상의 이유로 꺼내지 않는다.
+			member.setMemberName(rset.getString("MEMBER_NAME"));
+			member.setAge(rset.getInt("AGE"));
+			member.setEmail(rset.getString("EMAIL"));
+			member.setPhone(rset.getString("PHONE"));
+			member.setAddress(rset.getString("ADDRESS"));
+			member.setHobby(rset.getString("HOBBY"));
+			member.setRegDate(rset.getDate("REG_DATE"));
+		}
+		return member;
+	}
+
+	public int updateMember(Connection conn, Member member) throws SQLException {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "UPDATE MEMBER_TBL SET EMAIL = ?, PHONE = ?, ADDRESS = ?, HOBBY = ? WHERE MEMBER_ID = ?";
+		pstmt = conn.prepareStatement(query);
+		pstmt.setString(1, member.getEmail());
+		pstmt.setString(2, member.getPhone());
+		pstmt.setString(3, member.getAddress());
+		pstmt.setString(4, member.getHobby());
+		pstmt.setString(5, member.getMemberId());
+		result = pstmt.executeUpdate();
+		pstmt.close();
+		return result;
+	}
+
 }
