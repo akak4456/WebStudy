@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>브라우저 객체 모델</title>
+</head>
+<body>
+    <h1>윈도우 객체</h1>
+    <p>window 객체는 자바스크립트의 최상위 객체이며 BOM, DOM으로 나뉜다.</p>
+    <p>브라우저 창에 대한 설정을 하는 객체</p>
+    <button onclick="callAlert();">alert 확인</button> <br><br>
+    <button onclick="callConfirm();">confirm 확인</button> <br><br>
+    <button onclick="callPrompt();">prompt 확인</button> <br><br>
+    <button onclick="callOpen();">open 확인</button> <br><br>
+    <button onclick="callOpen2();">open2 확인</button> <br><br>
+    <button onclick="callClose();">close 확인</button> <br><br>
+    <button onclick ="callTimeout();">setTimeout 확인</button> <br><br>
+    <button onclick="callInterval();">setInterval 확인</button> <br><br>
+    <button onclick="callClearInterval();">clearInterval 확인</button> <br><br>
+    <div id="colorArea" style="background-color: #ccc; width: 300px; height: 100px; font-size: 30px; border: 1px solid #222; color: #222"></div>
+    <button onclick="startClock();">디지털 시계 On</button> <br><br>
+    <button onclick="stopClock();">디지털 시계 Off</button> <br><br>
+    <br><br><br>
+    <hr>
+    <h3>navigator 객체</h3>
+    <p>
+        웹 페이지를 실행하고 있는 브라우저에 대한 정보를 가지고 있는 객체
+    </p>
+    <script>
+        var myWindow = null;
+        var eInterval = null;
+        function startClock() {
+            var divTag = document.querySelector("#colorArea");
+            eInterval = window.setInterval(function() {
+                var timeData = new Date();
+                divTag.innerHTML = timeData.getHours() + " : " + timeData.getMinutes() + " : " + timeData.getSeconds();
+            }, 1000);
+        }
+        function stopClock() {
+            window.clearInterval(eInterval);
+        }
+        function callClearInterval() {
+            window.clearInterval(eInterval);
+        }
+        function callInterval() {
+            // 일정 시간마다 반복 동작
+            eInterval = window.setInterval(function() {
+                console.log("ABC");
+            }, 1000);
+        }
+        function callTimeout() {
+            window.setTimeout(function() {
+                myWindow.close();
+            },3000);
+        }
+        function callClose() {
+            myWindow.close();
+        }
+        function callOpen() {
+            myWindow = window.open("./2.JS_DOM.html", "pop", "width=500, height=600");
+        }
+        function callOpen2() {
+            window.open("./3.JS_Event.html", "pop", "width=400, height=500");
+        }
+        function callPrompt() {
+            var number = window.prompt('좋아하는 숫자를 입력하세요.');
+            console.log(number);
+        }
+        function callConfirm() {
+            var check = window.confirm("확인하셨습니까?");
+            console.log(check);
+        }
+        function callAlert() {
+            alert('call alert 확인');
+        }
+    </script>
+</body>
+</html>

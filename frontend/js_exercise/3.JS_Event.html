@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자스 이벤트</title>
+</head>
+<body>
+    <h1>이벤트</h1>
+    <p>
+        이벤트 : 웹 페이지에서 어떠한 행위(사용자의 행동)가 발생한 것을 이벤트라 함 <br>
+        이벤트 활용 : 이벤트 속성과 이벤트 핸들러(함수)를 연동하여 이벤트 발생시 특정기능을 하도록 함<div class=""></div>
+    </p>
+    <h3>이벤트 설정방법</h3>
+    <p>
+        1. 고전 이벤트 모델 <br>
+        2. 인라인 이벤트 모델 <br>
+        3. 표준 이벤트 모델 <br>
+    </p>
+    <h3>고전 이벤트 모델</h3>
+    <p>
+        1. 요소 객체가 가지고 있는 이벤트 속성에 이벤트핸들러를 연결하는 방법<br>
+        2. 이벤트를 제거할 때는 속성값에 null값을 넣어주면 됨
+    </p>
+    <button id="btn1">고전 이벤트 모델</button>
+    <div id="div-1">
+
+    </div>
+    <h3>인라인 이벤트 모델</h3>
+    <p>
+        요소 내부에 이벤트를 작성하는 방법 <br>
+        script 태그에 있는 함수를 호출하는 방식 <br>
+    </p>
+    <button onclick="inlineEvent();">인라인 이벤트 모델</button>
+    <br>
+    <span onclick="inlineEvent();">여기에도 바인딩</span>
+    <h3>표준 이벤트 모델</h3>
+    <p>
+        1. w3c에서 공식적으로 지정한 이벤트 <br>
+        2. 한번에 여러가지 이벤트 핸들러 설정 가능
+    </p>
+    <button id="sBtn1">표준 이벤트 모델</button>
+    <script>
+        var btnTag = document.querySelector("#btn1");
+        // 이름이 없는 익명함수를 클릭이벤트에 바인딩 함.
+        btnTag.onclick = function() {
+            alert("고전 이벤트 동작");
+        }
+        function inlineEvent() {
+            alert("인라인 이벤트 동작");
+        }
+
+        var sBtnTag = document.querySelector("#sBtn1");
+        sBtnTag.addEventListener("click", function() {
+            alert("표준 이벤트 동작!");
+        });
+    </script>
+</body>
+</html>
