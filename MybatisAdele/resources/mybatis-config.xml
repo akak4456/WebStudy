@@ -7,11 +7,14 @@
 		<environment id="development">
 			<transactionManager type="JDBC"></transactionManager>
 			<dataSource type="POOLED">
-				<property name="driver" value="oracle.jdbc.driver.OracleDriver"></property>
+				<property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
 				<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
         		<property name="username" value="ADELEJDBC"/>
         		<property name="password" value="ADELEJDBC"/>
 			</dataSource>			
 		</environment>
 	</environments>
+	<mappers>
+		<mapper resource="mapper/member-mapper.xml"></mapper>
+	</mappers>
 </configuration>
