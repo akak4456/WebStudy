@@ -27,9 +27,51 @@
     <p>
         웹 페이지를 실행하고 있는 브라우저에 대한 정보를 가지고 있는 객체
     </p>
+    <button onclick="checkNavigator()">navigator 객체 확인</button>
+    <h3>screen 객체</h3>
+    <p>웹 브라우저 화면이 아닌 운영체제 화면의 속성을 가진 객체</p>
+    <button onclick="checkScreen();">screnn 객체 확인</button>
+    <h3>location 객체</h3>
+    <p>
+        브라우저 주소 표시줄과 관련된 객체(페이지 이동)
+    </p>
+    <button onclick="location.reload();">location 확인</button> <br>
+    <button onclick="checkHref();">href 페이지 이동</button> <br>
+    <button onclick="checkAssign();">assign 페이지 이동</button> <br>
+    <button onclick="checkReplace();">replace 페이지 이동</button> <br>
+    <h3>history 객체</h3>
+    <p>
+        현재 창에서 사용자의 방문 기록을 저장함. <br>
+        뒤로가기, 앞으로가기, 새로고침 가능
+    </p>
+    <button onclick="javascript:console.log(history);">history 객체 확인</button>
+    <button onclick="goFront();">앞으로가기 확인</button>
     <script>
         var myWindow = null;
         var eInterval = null;
+        function goFront() {
+            // history.go(): 새로고침, go(-1): 뒤로가기, go(1): 앞으로가기
+            history.go(1);
+        }
+        function checkReplace() {
+            // 페이지 이동(전달값 이용)
+            // 뒤로가기가 불가능함
+            location.replace("http://www.kh-academy.co.kr");
+        }
+        function checkAssign() {
+            // 페이지 이동(전달값 이용)
+            location.assign("http://www.daum.net");
+        }
+        function checkHref() {
+            // 페이지 이동(속성값 이용)
+            location.href = "http://www.naver.com";
+        }
+        function checkScreen() {
+            console.log(screen);
+        }
+        function checkNavigator() {
+            console.log(navigator.userAgent);
+        }
         function startClock() {
             var divTag = document.querySelector("#colorArea");
             eInterval = window.setInterval(function() {
@@ -58,7 +100,9 @@
             myWindow.close();
         }
         function callOpen() {
-            myWindow = window.open("./2.JS_DOM.html", "pop", "width=500, height=600");
+            var left = (screen.width - 500) / 2;
+            var top = (screen.height - 600) / 2;
+            myWindow = window.open("./2.JS_DOM.html", "pop", "width=500, height=600, left="+left+", top="+top);
         }
         function callOpen2() {
             window.open("./3.JS_Event.html", "pop", "width=400, height=500");

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>구구단 출력하기</title>
+	</head>
+	<body>
+		<div id="result"></div>
+		<script>
+			var divTag = document.querySelector('#result');
+			var divText = '';
+			for (var i = 2; i <= 9; i++) {
+				divText += '<h3>' + i + '단</h3><br>';
+				for (var j = 1; j <= 9; j++) {
+					divText += i + ' X ' + j + ' = ' + i * j + '<br>';
+				}
+			}
+			divTag.innerHTML = divText;
+		</script>
+	</body>
+</html>
