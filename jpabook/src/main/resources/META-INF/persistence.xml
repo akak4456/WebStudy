@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" version="2.1">
-
     <persistence-unit name="jpabook">
-
+        <class>jpabook.start.chapter5.Member</class>
+        <class>jpabook.start.chapter5.Team</class>
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
 
             <!-- 필수 속성 -->
