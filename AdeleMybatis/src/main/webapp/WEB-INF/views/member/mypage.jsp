@@ -22,5 +22,15 @@
 			<input type="hidden" name="member-id" value="${member.memberId }"> 
 			<input type="submit" value="수정하기">
 		</form>
+		<br>
+		<a href="#" onclick="checkDelete();">회원탈퇴</a>
 	</body>
+	<script>
+		function checkDelete() {
+			var confirmDelete = confirm("정말로 회원탈퇴 하시겠습니까?");
+			if(confirmDelete) {
+				location.href = "/member/remove.kh?memberId=${member.memberId}";
+			}
+		}
+	</script>
 </html>

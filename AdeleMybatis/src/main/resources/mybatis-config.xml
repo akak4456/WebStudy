@@ -5,7 +5,7 @@
 <configuration>
 	<environments default="development">
 		<environment id="development">
-			<transactionManager type="JDBC"></transactionManager>
+			<transactionManager type="JDBC"/>
 			<dataSource type="POOLED">
 				<property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
 				<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
@@ -15,6 +15,7 @@
 		</environment>
 	</environments>
 	<mappers>
-		<mapper resource="mapper/member-mapper.xml"></mapper>
+		<mapper resource="mapper/member-mapper.xml"/>
+		<mapper resource="mapper/notice-mapper.xml"/>
 	</mappers>
 </configuration>

@@ -30,4 +30,13 @@ public class MemberService {
 		return member;
 	}
 
+	public int deleteMember(String memberId) {
+		int result = mDao.deleteMember(conn, memberId);
+		return result;
+	}
+
+	public int updateMember(Member member) {
+		int result = mDao.updateMember(conn, member);
+		return result;
+	}
 }

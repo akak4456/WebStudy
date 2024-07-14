@@ -13,8 +13,7 @@
 			${sessionScope.memberName }님 환영합니다~!
 			<a href="/member/mypage.kh">마이페이지</a>
 			<a href="/member/remove.do?memberId=${sessionScope.memberId }">회원탈퇴</a>
-			<a href="/book/list.do">책 리스트 확인</a>
-			<a href="/member/logout.kh">로그아웃</a>
+			<a href="/notice/insert.kh">공지작성</a>
 		</c:if>
 		<c:if test="${sessionScope.memberId eq null }">
 			<form action="/member/login.kh" method="post">

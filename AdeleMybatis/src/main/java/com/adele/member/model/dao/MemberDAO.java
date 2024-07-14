@@ -21,4 +21,13 @@ public class MemberDAO {
 		return member;
 	}
 
+	public int deleteMember(SqlSession conn, String memberId) {
+		int result = conn.delete("MemberMapper.deleteMember", memberId);
+		return result;
+	}
+
+	public int updateMember(SqlSession conn, Member member) {
+		int result = conn.update("MemberMapper.updateMember", member);
+		return result;
+	}
 }
