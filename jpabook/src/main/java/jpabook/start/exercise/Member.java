@@ -8,7 +8,7 @@ import java.util.List;
  * Created by holyeye on 2014. 3. 11..
  */
 @Entity
-public class Member {
+public class Member extends BaseEntity {
 
     @Id @GeneratedValue
     @Column(name = "MEMBER_ID")
