@@ -1,0 +1,31 @@
+2024-07-15 10:10:47.095245+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "\000d\000a    drop table if exists [*]Order CASCADE "; expected "identifier"; SQL statement:
+
+    drop table if exists Order CASCADE  [42001-224]
+2024-07-15 10:10:47.106248+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "\000d\000a    create table [*]Order (\000d\000a       ORDER_ID bigint not null,\000d\000a        orderAmount integer not null,\000d\000a        MEMBER_ID varchar(255),\000d\000a        PRODUCT_ID varchar(255),\000d\000a        primary key (ORDER_ID)\000d\000a    )"; expected "identifier"; SQL statement:
+
+    create table Order (
+       ORDER_ID bigint not null,
+        orderAmount integer not null,
+        MEMBER_ID varchar(255),
+        PRODUCT_ID varchar(255),
+        primary key (ORDER_ID)
+    ) [42001-224]
+2024-07-15 10:10:47.109242+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "\000d\000a    alter table [*]Order \000d\000a       add constraint FK1p7tdl9cjebkwla71ec3cu3oa \000d\000a       foreign key (MEMBER_ID) \000d\000a       references Member"; expected "identifier"; SQL statement:
+
+    alter table Order 
+       add constraint FK1p7tdl9cjebkwla71ec3cu3oa 
+       foreign key (MEMBER_ID) 
+       references Member [42001-224]
+2024-07-15 10:10:47.110235+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "\000d\000a    alter table [*]Order \000d\000a       add constraint FKiqsf200773nxdox2df2woemp5 \000d\000a       foreign key (PRODUCT_ID) \000d\000a       references Product"; expected "identifier"; SQL statement:
+
+    alter table Order 
+       add constraint FKiqsf200773nxdox2df2woemp5 
+       foreign key (PRODUCT_ID) 
+       references Product [42001-224]
+2024-07-15 10:10:47.228283+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "/* insert jpabook.start.chapter6.Order */ insert into [*]Order (MEMBER_ID, orderAmount, PRODUCT_ID, ORDER_ID) values (?, ?, ?, ?)"; expected "identifier"; SQL statement:
+/* insert jpabook.start.chapter6.Order */ insert into Order (MEMBER_ID, orderAmount, PRODUCT_ID, ORDER_ID) values (?, ?, ?, ?) [42001-224]

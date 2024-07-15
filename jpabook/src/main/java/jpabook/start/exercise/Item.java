@@ -1,6 +1,8 @@
 package jpabook.start.exercise;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by holyeye on 2014. 3. 11..
@@ -15,7 +17,10 @@ public class Item {
 
     private String name;        //이름
     private int price;          //가격
-    private int stockQuantity;  //재고수량
+    private int stockQuantity;
+
+    @ManyToMany(mappedBy = "items")
+    private List<Category> categories = new ArrayList<>();
 
     //Getter, Setter
     public Long getId() {

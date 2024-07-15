@@ -379,3 +379,313 @@ Caused by: org.h2.mvstore.MVStoreException: The file is locked: C:/MyWorkspace/W
 	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:81)
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:286)
 	... 39 more
+2024-07-15 09:52:52.725038+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "\000d\000a    drop table if exists [*]Order CASCADE "; expected "identifier"; SQL statement:
+
+    drop table if exists Order CASCADE  [42001-224]
+2024-07-15 09:52:52.735037+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "\000d\000a    create table [*]Order (\000d\000a       ORDER_ID bigint not null,\000d\000a        orderAmount integer not null,\000d\000a        MEMBER_ID varchar(255),\000d\000a        PRODUCT_ID varchar(255),\000d\000a        primary key (ORDER_ID)\000d\000a    )"; expected "identifier"; SQL statement:
+
+    create table Order (
+       ORDER_ID bigint not null,
+        orderAmount integer not null,
+        MEMBER_ID varchar(255),
+        PRODUCT_ID varchar(255),
+        primary key (ORDER_ID)
+    ) [42001-224]
+2024-07-15 09:52:52.738027+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "\000d\000a    alter table [*]Order \000d\000a       add constraint FK1p7tdl9cjebkwla71ec3cu3oa \000d\000a       foreign key (MEMBER_ID) \000d\000a       references Member"; expected "identifier"; SQL statement:
+
+    alter table Order 
+       add constraint FK1p7tdl9cjebkwla71ec3cu3oa 
+       foreign key (MEMBER_ID) 
+       references Member [42001-224]
+2024-07-15 09:52:52.738027+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "\000d\000a    alter table [*]Order \000d\000a       add constraint FKiqsf200773nxdox2df2woemp5 \000d\000a       foreign key (PRODUCT_ID) \000d\000a       references Product"; expected "identifier"; SQL statement:
+
+    alter table Order 
+       add constraint FKiqsf200773nxdox2df2woemp5 
+       foreign key (PRODUCT_ID) 
+       references Product [42001-224]
+2024-07-15 09:52:52.858069+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "/* insert jpabook.start.chapter6.Order */ insert into [*]Order (MEMBER_ID, orderAmount, PRODUCT_ID, ORDER_ID) values (?, ?, ?, ?)"; expected "identifier"; SQL statement:
+/* insert jpabook.start.chapter6.Order */ insert into Order (MEMBER_ID, orderAmount, PRODUCT_ID, ORDER_ID) values (?, ?, ?, ?) [42001-224]
+2024-07-15 09:59:59.648088+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "\000d\000a    drop table if exists [*]Order CASCADE "; expected "identifier"; SQL statement:
+
+    drop table if exists Order CASCADE  [42001-224]
+2024-07-15 09:59:59.657089+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "\000d\000a    create table [*]Order (\000d\000a       ORDER_ID bigint not null,\000d\000a        orderAmount integer not null,\000d\000a        MEMBER_ID varchar(255),\000d\000a        PRODUCT_ID varchar(255),\000d\000a        primary key (ORDER_ID)\000d\000a    )"; expected "identifier"; SQL statement:
+
+    create table Order (
+       ORDER_ID bigint not null,
+        orderAmount integer not null,
+        MEMBER_ID varchar(255),
+        PRODUCT_ID varchar(255),
+        primary key (ORDER_ID)
+    ) [42001-224]
+2024-07-15 09:59:59.659078+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "\000d\000a    alter table [*]Order \000d\000a       add constraint FK1p7tdl9cjebkwla71ec3cu3oa \000d\000a       foreign key (MEMBER_ID) \000d\000a       references Member"; expected "identifier"; SQL statement:
+
+    alter table Order 
+       add constraint FK1p7tdl9cjebkwla71ec3cu3oa 
+       foreign key (MEMBER_ID) 
+       references Member [42001-224]
+2024-07-15 09:59:59.660090+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "\000d\000a    alter table [*]Order \000d\000a       add constraint FKiqsf200773nxdox2df2woemp5 \000d\000a       foreign key (PRODUCT_ID) \000d\000a       references Product"; expected "identifier"; SQL statement:
+
+    alter table Order 
+       add constraint FKiqsf200773nxdox2df2woemp5 
+       foreign key (PRODUCT_ID) 
+       references Product [42001-224]
+2024-07-15 09:59:59.785104+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "/* insert jpabook.start.chapter6.Order */ insert into [*]Order (MEMBER_ID, orderAmount, PRODUCT_ID, ORDER_ID) values (?, ?, ?, ?)"; expected "identifier"; SQL statement:
+/* insert jpabook.start.chapter6.Order */ insert into Order (MEMBER_ID, orderAmount, PRODUCT_ID, ORDER_ID) values (?, ?, ?, ?) [42001-224]
+2024-07-15 10:01:12.112399+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "\000d\000a    drop table if exists [*]Order CASCADE "; expected "identifier"; SQL statement:
+
+    drop table if exists Order CASCADE  [42001-224]
+2024-07-15 10:01:12.121397+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "\000d\000a    create table [*]Order (\000d\000a       ORDER_ID bigint not null,\000d\000a        orderAmount integer not null,\000d\000a        MEMBER_ID varchar(255),\000d\000a        PRODUCT_ID varchar(255),\000d\000a        primary key (ORDER_ID)\000d\000a    )"; expected "identifier"; SQL statement:
+
+    create table Order (
+       ORDER_ID bigint not null,
+        orderAmount integer not null,
+        MEMBER_ID varchar(255),
+        PRODUCT_ID varchar(255),
+        primary key (ORDER_ID)
+    ) [42001-224]
+2024-07-15 10:01:12.123395+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "\000d\000a    alter table [*]Order \000d\000a       add constraint FK1p7tdl9cjebkwla71ec3cu3oa \000d\000a       foreign key (MEMBER_ID) \000d\000a       references Member"; expected "identifier"; SQL statement:
+
+    alter table Order 
+       add constraint FK1p7tdl9cjebkwla71ec3cu3oa 
+       foreign key (MEMBER_ID) 
+       references Member [42001-224]
+2024-07-15 10:01:12.124395+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "\000d\000a    alter table [*]Order \000d\000a       add constraint FKiqsf200773nxdox2df2woemp5 \000d\000a       foreign key (PRODUCT_ID) \000d\000a       references Product"; expected "identifier"; SQL statement:
+
+    alter table Order 
+       add constraint FKiqsf200773nxdox2df2woemp5 
+       foreign key (PRODUCT_ID) 
+       references Product [42001-224]
+2024-07-15 10:01:12.237424+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "/* insert jpabook.start.chapter6.Order */ insert into [*]Order (MEMBER_ID, orderAmount, PRODUCT_ID, ORDER_ID) values (?, ?, ?, ?)"; expected "identifier"; SQL statement:
+/* insert jpabook.start.chapter6.Order */ insert into Order (MEMBER_ID, orderAmount, PRODUCT_ID, ORDER_ID) values (?, ?, ?, ?) [42001-224]
+2024-07-15 10:02:28.009177+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "\000d\000a    drop table if exists [*]Order CASCADE "; expected "identifier"; SQL statement:
+
+    drop table if exists Order CASCADE  [42001-224]
+2024-07-15 10:02:28.017172+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "\000d\000a    create table [*]Order (\000d\000a       ORDER_ID bigint generated by default as identity,\000d\000a        orderAmount integer not null,\000d\000a        MEMBER_ID varchar(255),\000d\000a        PRODUCT_ID varchar(255),\000d\000a        primary key (ORDER_ID)\000d\000a    )"; expected "identifier"; SQL statement:
+
+    create table Order (
+       ORDER_ID bigint generated by default as identity,
+        orderAmount integer not null,
+        MEMBER_ID varchar(255),
+        PRODUCT_ID varchar(255),
+        primary key (ORDER_ID)
+    ) [42001-224]
+2024-07-15 10:02:28.019173+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "\000d\000a    alter table [*]Order \000d\000a       add constraint FK1p7tdl9cjebkwla71ec3cu3oa \000d\000a       foreign key (MEMBER_ID) \000d\000a       references Member"; expected "identifier"; SQL statement:
+
+    alter table Order 
+       add constraint FK1p7tdl9cjebkwla71ec3cu3oa 
+       foreign key (MEMBER_ID) 
+       references Member [42001-224]
+2024-07-15 10:02:28.020172+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "\000d\000a    alter table [*]Order \000d\000a       add constraint FKiqsf200773nxdox2df2woemp5 \000d\000a       foreign key (PRODUCT_ID) \000d\000a       references Product"; expected "identifier"; SQL statement:
+
+    alter table Order 
+       add constraint FKiqsf200773nxdox2df2woemp5 
+       foreign key (PRODUCT_ID) 
+       references Product [42001-224]
+2024-07-15 10:02:28.115193+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "/* insert jpabook.start.chapter6.Order */ insert into [*]Order (ORDER_ID, MEMBER_ID, orderAmount, PRODUCT_ID) values (default, ?, ?, ?)"; expected "identifier"; SQL statement:
+/* insert jpabook.start.chapter6.Order */ insert into Order (ORDER_ID, MEMBER_ID, orderAmount, PRODUCT_ID) values (default, ?, ?, ?) [42001-224]
+2024-07-15 10:07:36.705735+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "\000d\000a    drop table if exists [*]Order CASCADE "; expected "identifier"; SQL statement:
+
+    drop table if exists Order CASCADE  [42001-224]
+2024-07-15 10:07:36.713736+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "\000d\000a    create table [*]Order (\000d\000a       ORDER_ID bigint generated by default as identity,\000d\000a        orderAmount integer not null,\000d\000a        MEMBER_ID varchar(255),\000d\000a        PRODUCT_ID varchar(255),\000d\000a        primary key (ORDER_ID)\000d\000a    )"; expected "identifier"; SQL statement:
+
+    create table Order (
+       ORDER_ID bigint generated by default as identity,
+        orderAmount integer not null,
+        MEMBER_ID varchar(255),
+        PRODUCT_ID varchar(255),
+        primary key (ORDER_ID)
+    ) [42001-224]
+2024-07-15 10:07:36.715745+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "\000d\000a    alter table [*]Order \000d\000a       add constraint FK1p7tdl9cjebkwla71ec3cu3oa \000d\000a       foreign key (MEMBER_ID) \000d\000a       references Member"; expected "identifier"; SQL statement:
+
+    alter table Order 
+       add constraint FK1p7tdl9cjebkwla71ec3cu3oa 
+       foreign key (MEMBER_ID) 
+       references Member [42001-224]
+2024-07-15 10:07:36.716746+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "\000d\000a    alter table [*]Order \000d\000a       add constraint FKiqsf200773nxdox2df2woemp5 \000d\000a       foreign key (PRODUCT_ID) \000d\000a       references Product"; expected "identifier"; SQL statement:
+
+    alter table Order 
+       add constraint FKiqsf200773nxdox2df2woemp5 
+       foreign key (PRODUCT_ID) 
+       references Product [42001-224]
+2024-07-15 10:07:36.810773+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "/* insert jpabook.start.chapter6.Order */ insert into [*]Order (ORDER_ID, MEMBER_ID, orderAmount, PRODUCT_ID) values (default, ?, ?, ?)"; expected "identifier"; SQL statement:
+/* insert jpabook.start.chapter6.Order */ insert into Order (ORDER_ID, MEMBER_ID, orderAmount, PRODUCT_ID) values (default, ?, ?, ?) [42001-224]
+2024-07-15 10:08:15.915297+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "\000d\000a    drop table if exists [*]Order CASCADE "; expected "identifier"; SQL statement:
+
+    drop table if exists Order CASCADE  [42001-224]
+2024-07-15 10:08:15.922299+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "\000d\000a    create table [*]Order (\000d\000a       ORDER_ID bigint not null,\000d\000a        orderAmount integer not null,\000d\000a        MEMBER_ID varchar(255),\000d\000a        PRODUCT_ID varchar(255),\000d\000a        primary key (ORDER_ID)\000d\000a    )"; expected "identifier"; SQL statement:
+
+    create table Order (
+       ORDER_ID bigint not null,
+        orderAmount integer not null,
+        MEMBER_ID varchar(255),
+        PRODUCT_ID varchar(255),
+        primary key (ORDER_ID)
+    ) [42001-224]
+2024-07-15 10:08:15.924293+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "\000d\000a    alter table [*]Order \000d\000a       add constraint FK1p7tdl9cjebkwla71ec3cu3oa \000d\000a       foreign key (MEMBER_ID) \000d\000a       references Member"; expected "identifier"; SQL statement:
+
+    alter table Order 
+       add constraint FK1p7tdl9cjebkwla71ec3cu3oa 
+       foreign key (MEMBER_ID) 
+       references Member [42001-224]
+2024-07-15 10:08:15.925301+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "\000d\000a    alter table [*]Order \000d\000a       add constraint FKiqsf200773nxdox2df2woemp5 \000d\000a       foreign key (PRODUCT_ID) \000d\000a       references Product"; expected "identifier"; SQL statement:
+
+    alter table Order 
+       add constraint FKiqsf200773nxdox2df2woemp5 
+       foreign key (PRODUCT_ID) 
+       references Product [42001-224]
+2024-07-15 10:08:16.036325+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "/* insert jpabook.start.chapter6.Order */ insert into [*]Order (MEMBER_ID, orderAmount, PRODUCT_ID, ORDER_ID) values (?, ?, ?, ?)"; expected "identifier"; SQL statement:
+/* insert jpabook.start.chapter6.Order */ insert into Order (MEMBER_ID, orderAmount, PRODUCT_ID, ORDER_ID) values (?, ?, ?, ?) [42001-224]
+2024-07-15 10:09:01.929037+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "\000d\000a    drop table if exists [*]Order CASCADE "; expected "identifier"; SQL statement:
+
+    drop table if exists Order CASCADE  [42001-224]
+2024-07-15 10:09:01.938043+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "\000d\000a    create table [*]Order (\000d\000a       ORDER_ID bigint not null,\000d\000a        orderAmount integer not null,\000d\000a        MEMBER_ID varchar(255),\000d\000a        PRODUCT_ID varchar(255),\000d\000a        primary key (ORDER_ID)\000d\000a    )"; expected "identifier"; SQL statement:
+
+    create table Order (
+       ORDER_ID bigint not null,
+        orderAmount integer not null,
+        MEMBER_ID varchar(255),
+        PRODUCT_ID varchar(255),
+        primary key (ORDER_ID)
+    ) [42001-224]
+2024-07-15 10:09:01.940042+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "\000d\000a    alter table [*]Order \000d\000a       add constraint FK1p7tdl9cjebkwla71ec3cu3oa \000d\000a       foreign key (MEMBER_ID) \000d\000a       references Member"; expected "identifier"; SQL statement:
+
+    alter table Order 
+       add constraint FK1p7tdl9cjebkwla71ec3cu3oa 
+       foreign key (MEMBER_ID) 
+       references Member [42001-224]
+2024-07-15 10:09:01.942038+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "\000d\000a    alter table [*]Order \000d\000a       add constraint FKiqsf200773nxdox2df2woemp5 \000d\000a       foreign key (PRODUCT_ID) \000d\000a       references Product"; expected "identifier"; SQL statement:
+
+    alter table Order 
+       add constraint FKiqsf200773nxdox2df2woemp5 
+       foreign key (PRODUCT_ID) 
+       references Product [42001-224]
+2024-07-15 10:09:02.055063+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "/* insert jpabook.start.chapter6.Order */ insert into [*]Order (MEMBER_ID, orderAmount, PRODUCT_ID, ORDER_ID) values (?, ?, ?, ?)"; expected "identifier"; SQL statement:
+/* insert jpabook.start.chapter6.Order */ insert into Order (MEMBER_ID, orderAmount, PRODUCT_ID, ORDER_ID) values (?, ?, ?, ?) [42001-224]
+2024-07-15 10:09:36.010387+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "\000d\000a    drop table if exists [*]Order CASCADE "; expected "identifier"; SQL statement:
+
+    drop table if exists Order CASCADE  [42001-224]
+2024-07-15 10:09:36.019376+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "\000d\000a    create table [*]Order (\000d\000a       ORDER_ID bigint not null,\000d\000a        orderAmount integer not null,\000d\000a        MEMBER_ID varchar(255),\000d\000a        PRODUCT_ID varchar(255),\000d\000a        primary key (ORDER_ID)\000d\000a    )"; expected "identifier"; SQL statement:
+
+    create table Order (
+       ORDER_ID bigint not null,
+        orderAmount integer not null,
+        MEMBER_ID varchar(255),
+        PRODUCT_ID varchar(255),
+        primary key (ORDER_ID)
+    ) [42001-224]
+2024-07-15 10:09:36.021377+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "\000d\000a    alter table [*]Order \000d\000a       add constraint FK1p7tdl9cjebkwla71ec3cu3oa \000d\000a       foreign key (MEMBER_ID) \000d\000a       references Member"; expected "identifier"; SQL statement:
+
+    alter table Order 
+       add constraint FK1p7tdl9cjebkwla71ec3cu3oa 
+       foreign key (MEMBER_ID) 
+       references Member [42001-224]
+2024-07-15 10:09:36.027398+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "\000d\000a    alter table [*]Order \000d\000a       add constraint FKiqsf200773nxdox2df2woemp5 \000d\000a       foreign key (PRODUCT_ID) \000d\000a       references Product"; expected "identifier"; SQL statement:
+
+    alter table Order 
+       add constraint FKiqsf200773nxdox2df2woemp5 
+       foreign key (PRODUCT_ID) 
+       references Product [42001-224]
+2024-07-15 10:09:36.134751+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "/* insert jpabook.start.chapter6.Order */ insert into [*]Order (MEMBER_ID, orderAmount, PRODUCT_ID, ORDER_ID) values (?, ?, ?, ?)"; expected "identifier"; SQL statement:
+/* insert jpabook.start.chapter6.Order */ insert into Order (MEMBER_ID, orderAmount, PRODUCT_ID, ORDER_ID) values (?, ?, ?, ?) [42001-224]
+2024-07-15 10:10:53.144392+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "\000d\000a    drop table if exists [*]Order CASCADE "; expected "identifier"; SQL statement:
+
+    drop table if exists Order CASCADE  [42001-224]
+2024-07-15 10:10:53.159394+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "\000d\000a    create table [*]Order (\000d\000a       ORDER_ID bigint not null,\000d\000a        orderAmount integer not null,\000d\000a        MEMBER_ID varchar(255),\000d\000a        PRODUCT_ID varchar(255),\000d\000a        primary key (ORDER_ID)\000d\000a    )"; expected "identifier"; SQL statement:
+
+    create table Order (
+       ORDER_ID bigint not null,
+        orderAmount integer not null,
+        MEMBER_ID varchar(255),
+        PRODUCT_ID varchar(255),
+        primary key (ORDER_ID)
+    ) [42001-224]
+2024-07-15 10:10:53.163397+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "\000d\000a    alter table [*]Order \000d\000a       add constraint FK1p7tdl9cjebkwla71ec3cu3oa \000d\000a       foreign key (MEMBER_ID) \000d\000a       references Member"; expected "identifier"; SQL statement:
+
+    alter table Order 
+       add constraint FK1p7tdl9cjebkwla71ec3cu3oa 
+       foreign key (MEMBER_ID) 
+       references Member [42001-224]
+2024-07-15 10:10:53.164397+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "\000d\000a    alter table [*]Order \000d\000a       add constraint FKiqsf200773nxdox2df2woemp5 \000d\000a       foreign key (PRODUCT_ID) \000d\000a       references Product"; expected "identifier"; SQL statement:
+
+    alter table Order 
+       add constraint FKiqsf200773nxdox2df2woemp5 
+       foreign key (PRODUCT_ID) 
+       references Product [42001-224]
+2024-07-15 10:10:53.296425+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "/* insert jpabook.start.chapter6.Order */ insert into [*]Order (MEMBER_ID, orderAmount, PRODUCT_ID, ORDER_ID) values (?, ?, ?, ?)"; expected "identifier"; SQL statement:
+/* insert jpabook.start.chapter6.Order */ insert into Order (MEMBER_ID, orderAmount, PRODUCT_ID, ORDER_ID) values (?, ?, ?, ?) [42001-224]
+2024-07-15 10:11:22.873133+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "\000d\000a    drop table if exists [*]Order CASCADE "; expected "identifier"; SQL statement:
+
+    drop table if exists Order CASCADE  [42001-224]
+2024-07-15 10:11:22.881130+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "\000d\000a    create table [*]Order (\000d\000a       ORDER_ID bigint not null,\000d\000a        orderAmount integer not null,\000d\000a        MEMBER_ID varchar(255),\000d\000a        PRODUCT_ID varchar(255),\000d\000a        primary key (ORDER_ID)\000d\000a    )"; expected "identifier"; SQL statement:
+
+    create table Order (
+       ORDER_ID bigint not null,
+        orderAmount integer not null,
+        MEMBER_ID varchar(255),
+        PRODUCT_ID varchar(255),
+        primary key (ORDER_ID)
+    ) [42001-224]
+2024-07-15 10:11:22.883128+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "\000d\000a    alter table [*]Order \000d\000a       add constraint FK1p7tdl9cjebkwla71ec3cu3oa \000d\000a       foreign key (MEMBER_ID) \000d\000a       references Member"; expected "identifier"; SQL statement:
+
+    alter table Order 
+       add constraint FK1p7tdl9cjebkwla71ec3cu3oa 
+       foreign key (MEMBER_ID) 
+       references Member [42001-224]
+2024-07-15 10:11:22.884135+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "\000d\000a    alter table [*]Order \000d\000a       add constraint FKiqsf200773nxdox2df2woemp5 \000d\000a       foreign key (PRODUCT_ID) \000d\000a       references Product"; expected "identifier"; SQL statement:
+
+    alter table Order 
+       add constraint FKiqsf200773nxdox2df2woemp5 
+       foreign key (PRODUCT_ID) 
+       references Product [42001-224]
+2024-07-15 10:11:23.019155+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "/* insert jpabook.start.chapter6.Order */ insert into [*]Order (MEMBER_ID, orderAmount, PRODUCT_ID, ORDER_ID) values (?, ?, ?, ?)"; expected "identifier"; SQL statement:
+/* insert jpabook.start.chapter6.Order */ insert into Order (MEMBER_ID, orderAmount, PRODUCT_ID, ORDER_ID) values (?, ?, ?, ?) [42001-224]
