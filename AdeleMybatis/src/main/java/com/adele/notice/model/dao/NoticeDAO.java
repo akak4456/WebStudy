@@ -15,4 +15,9 @@ public class NoticeDAO {
         List<Notice> list = session.selectList("NoticeMapper.selectList");
         return list;
     }
+
+    public Notice selectOne(SqlSession session, int noticeNo) {
+        Notice result = session.selectOne("NoticeMapper.selectOne", noticeNo);
+        return result;
+    }
 }

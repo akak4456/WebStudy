@@ -23,4 +23,9 @@ public class NoticeService {
         List<Notice> nList = nDao.selectList(session);
         return nList;
     }
+
+    public Notice selectOneByNo(int noticeNo) {
+        Notice result = nDao.selectOne(session, noticeNo);
+        return result;
+    }
 }

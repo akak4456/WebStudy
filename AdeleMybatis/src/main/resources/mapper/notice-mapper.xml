@@ -19,4 +19,8 @@
     <select id="selectList" resultMap="noticeResultMap">
         SELECT * FROM NOTICE_TBL
     </select>
+    <select id="selectOne" resultMap="noticeResultMap">
+        SELECT * FROM NOTICE_TBL
+        WHERE NOTICE_NO = #{noticeNo}
+    </select>
 </mapper>
