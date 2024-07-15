@@ -18,7 +18,18 @@
         <span>조회수 : ${notice.viewCount}</span><br>
         <span>글제목 : ${notice.noticeSubject}</span><br>
         <span>글내용 : ${notice.noticeContent}</span><br>
+        <a href="#" onclick="goBack(); ">뒤로가기</a>
         <a href="/notice/update.kh?noticeNo=${notice.noticeNo}">수정하기</a>
-        <a href="#">삭제하기</a>
+        <a href="#" onclick="checkDelete(); ">삭제하기</a>
+        <script>
+            function checkDelete() {
+                if(confirm("정말 삭제 하시겠습니까?")) {
+                    location.href = "/notice/delete.kh?noticeNo=${notice.noticeNo}";
+                }
+            }
+            function goBack() {
+                history.go(-1);
+            }
+        </script>
     </body>
 </html>
