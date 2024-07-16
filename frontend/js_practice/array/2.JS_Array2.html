@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자스 배열 문제2</title>
+</head>
+<body>
+    <h1> 배열 실습 문제 2</h1>
+    <br><br> 문제4. 다음 보기의 문자열을 바탕으로<br> 삭제할 음식과 추가할 음식을 입력받아서 <br> 지우고,추가하는 코드를 작성하여라. (단, 1개씩 입력)<br>
+    <br> 예시) 삭제 : 당근 / 추가 : 타코야끼 <br> 결과-> 피자 치킨 햄버거 떡볶이 타코야끼 <br>
+    <fieldset>
+        <legend>보기</legend>
+        <label id="stringla4">피자 치킨 당근 햄버거 떡볶이</label><br>
+    </fieldset><br>
+    <input type="text" id="remove" size="25" placeholder="삭제할 음식이름을 입력하세요">
+    <input type="text" id="add" size="25" placeholder="추가할 음식이름을 입력하세요">
+    <p style="border:1px solid red;" id="print4">이 부분에 정답이 출력 될 수 있도록 하세요</p>
+    <button onclick="printItems();"> 처리 및 출력 </button>
+    <script>
+        var items = document.querySelector("#stringla4").innerHTML.split(" ");
+        function printItems() {
+            var addText = document.querySelector("#add").value;
+            var removeText = document.querySelector("#remove").value;
+            if(removeText !== "") {
+                var removeIdx = items.indexOf(removeText);
+                console.log(removeIdx);
+                if(removeIdx >= 0) {
+                    items.splice(removeIdx, 1);
+                }
+            } else {
+                items.push(addText);
+            }
+            document.querySelector("#print4").innerHTML = "결과->" + items.join(" ");
+        }
+    </script>
+</body>
+</html>
