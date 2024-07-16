@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>자스 배열</title>
+    </head>
+    <body>
+        <h1>배열</h1>
+        <h3>배열이란?</h3>
+        <p>
+            자바스크립트에서는 자료형 지정이 없기 때문에 모든 자료형을 보관하는<br>
+            변수의 모음을 배열로 처리, 자바의 컬렉션(List(Object))과 비슷함.
+        </p>
+        <h3>배열의 선언</h3>
+        <p>
+            배열의 선언시 크기를 정하지 않고 선언할 수도 있고, 크기를 정하고 선언할 수 있다.
+        </p>
+        <h3>배열의 초기화</h3>
+        <p>
+            선언된 배열에 값을 대일할 수 있으며 new키워드와
+            []를 이용할 수 있다.
+        </p>
+        <h3>Array 객체 함수(메소드)</h3>
+        <p>
+            Array도 하나의 객체이기 때문에 활용할 수 있는 메소드가 있음. <br>
+            1. 배열명.indexOf("값") : 배열에서 요소가 위치한 인덱스 리턴 <br>
+            2. 배열명.concat(배열명2) : 두 개 또는 세 개의 배열을 결합함 <br>
+            3. 배열명.join() : 배열을 결합하고 문자열로 변환 <br>
+            - 배열명.toString() : 배열을 문자열로 변환 <br>
+            4. 배열명.reverse() : 배열의 순서를 뒤집음 <br>
+            5. 배열명.sort() : 배열을 정렬함 <br>
+            6. 배열명.push('값') : 배열의 맨 뒤에 요소 추가 <br>
+            7. 배열명.pop() : 배열의 맨 뒤에 요소 제거 <br>
+            8. 배열명.shift() : 배열의 첫번째 요소 제거 <br>
+            9. 배열명.unshift() : 배열의 파에 새로운 요소 추가 <br>
+        </p>
+        <h5>shift/unshift 예제</h5>
+        <div>
+            <p>결과 버튼을 눌러서 console에서 확인하세요.</p>
+            <input type="button" value="결과" onclick="shiftEx();">
+        </div>
+        <h5>push/pop 예제</h5>
+        <div>
+            <p>결과 버튼을 눌러서 console에서 확인하세요.</p>
+            <input type="button" value="결과" onclick="pushPop();">
+        </div>
+        <h5>sort 예제</h5>
+        <div>
+            <p>결과 버튼을 눌러서 console에서 확인하세요</p>
+            <input type="button" value="결과" onclick="fruitSort();">
+        </div>
+        <h5>reverse 예제</h5>
+        <div>
+            <p>결과 버튼을 눌러서 console에서 확인하세요</p>
+            <input type="button" value="결과" onclick="fruitReverse();">
+        </div>
+        <h5>join예제</h5>
+        <div>
+            <p>결과 버튼을 눌러서 console에서 확인하세요</p>
+            <input type="button" value="결과" onclick="fruitJoin();">
+        </div>
+        <h5>concat예제</h5>
+        <div>
+            <p>결과 버튼을 눌러서 console에서 확인하세요</p>
+            <input type="button" value="결과" onclick="fruitConcat(); ">
+        </div>
+        <h5>indexOf 예제</h5>
+        <div>
+            <p>다음 중 좋아하는 과일을 작성하시오</p>
+            <p id="p1">바나나 / 딸기 / 복숭아 / 수박</p>
+            <input type="text" name="fruit" id="fruit">
+            <input type="submit" value="결과" onclick="fruitIndexOf();"> 
+            <p id="result1"></p> 
+        </div>
+        <script>
+            function shiftEx() {
+                var globals = [];
+                globals.unshift("Meta");
+                globals.unshift("Amazon");
+                globals.unshift("Apple");
+                globals.unshift("Netflix");
+                globals.unshift("Google");
+                console.log(globals);
+                console.log(globals.pop());
+                console.log(globals);
+                console.log(globals.shift());
+                console.log(globals);
+            }
+            function pushPop() {
+                // push/pop은 스택 자료구조를 구현할 수 있다.
+                var companies = ["네이버", "카카오", "라인", "쿠팡", "배달의 민족"];
+                companies.push("당근마켓");
+                companies.push("토스");
+                console.log(companies);
+                console.log(companies.pop())
+                console.log(companies);
+                console.log(companies.pop());
+                console.log(companies);
+                console.log(companies.pop());
+                console.log(companies);
+            }
+            function sortASC(a, b) {
+                return a - b;
+            }
+            function sortDESC(a, b) {
+                return b - a;
+            }
+            function fruitSort() {
+                var sortArrs = [1,7,4,5,3,2,8,6,9];
+                sortArrs.sort(sortDESC);
+                console.log(sortArrs);
+            }
+            function fruitReverse() {
+                var nums = [1,2,3,4,5,6,7,8,9,10];
+                nums.reverse();
+                console.log(nums);
+            }
+            function fruitJoin() {
+                var fruitBag = ["바나나","참외","망고","카람볼라"];
+                console.log(fruitBag);
+                console.log(fruitBag.join(","));
+                console.log(fruitBag.toString());
+            }   
+            function fruitConcat() {
+                var fBasket = new Array();
+                fBasket[0] = "귤";
+                fBasket[1] = "배";
+                fBasket[2] = "감";
+                fBasket[3] = "밤";
+                var fBag = ["사과", "자두", "체리", "용과"];
+                var conResult = fBasket.concat(fBag);
+                console.log(conResult);
+            }
+            function fruitIndexOf() {
+                var fruits = new Array(4);
+                fruits[0] = "바나나";
+                fruits[1] = "딸기";
+                fruits[2] = "복숭아";
+                fruits[3] = "수박";
+                fruits = ["바나나", "딸기", "qhrtnddk", "수박"];
+                var inputTag = document.querySelector("#fruit");
+                var pTag = document.querySelector("#result1");
+                // for문을 대체할 수 있는 메소드
+                var index = fruits.indexOf(inputTag.value);
+                pTag.innerHTML = inputTag.value + "은/는 "+index+"번째 있습니다.";
+            }
+        </script>
+    </body>
+</html>
