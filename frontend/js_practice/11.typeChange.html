@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>속성값 변경 실습</title>
+		<style>
+			div {
+				border: 1px solid #222;
+				background-color: #222;
+				height: 100px;
+				width: 100px;
+			}
+		</style>
+	</head>
+	<body>
+		<h3>
+			문제1. 색상 선택 후 변경 버튼을 클릭하면 색상이 변경되도록 만들어 보시오
+		</h3>
+		<div id="div1"></div>
+		<input type="color" />
+		<button id="colorChange">변경</button>
+		<h3>문제2. 버튼에 따른 크기 조절이 가능하게 만들어 보시오</h3>
+		<div id="div2"></div>
+		<button id="halfSize">반으로 만들기</button>
+		<button onclick="defaultSize();">원본</button>
+		<button id="doubleSize">두배로 만들기</button>
+		<script>
+			document
+				.querySelector('#colorChange')
+				.addEventListener('click', function () {
+					var colorVal = document.querySelector("input[type='color']").value;
+					var divTag = document.querySelector('#div1');
+					divTag.style.backgroundColor = colorVal;
+				});
+			var div2Tag = document.querySelector('#div2');
+			document
+				.querySelector('#halfSize')
+				.addEventListener('click', function () {
+					div2Tag.style.width = '50px';
+					div2Tag.style.height = '50px';
+				});
+			function defaultSize() {
+				div2Tag.style.width = '100px';
+				div2Tag.style.height = '100px';
+			}
+			document
+				.querySelector('#doubleSize')
+				.addEventListener('click', function () {
+					div2Tag.style.width = '200px';
+					div2Tag.style.height = '200px';
+				});
+		</script>
+	</body>
+</html>
