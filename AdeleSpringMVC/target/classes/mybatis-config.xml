@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+	PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- NULL일 때 NULL로 인식하도록 함 -->
+	<settings>
+		<setting name="jdbcTypeForNull" value="NULL" />
+	</settings>
+ 	<!--  VO 만들어질때마다 추가 -->
+ 	<typeAliases>
+ 		<typeAlias type="com.adele.spring.member.domain.MemberVO" alias="Member" />
+ 	</typeAliases>
+	<mappers>
+		<mapper resource="mappers/member-mapper.xml"/>
+	</mappers>
+</configuration>
