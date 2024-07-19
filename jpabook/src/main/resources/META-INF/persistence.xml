@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" version="2.1">
     <persistence-unit name="jpabook">
-        <class>jpabook.start.chapter9.Member</class>
-        <class>jpabook.start.chapter9.PhoneServiceProvider</class>
+        <class>jpabook.start.chapter10.Member</class>
+        <class>jpabook.start.chapter10.Order</class>
+        <class>jpabook.start.chapter10.Product</class>
+        <class>jpabook.start.chapter10.Team</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
 
