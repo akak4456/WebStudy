@@ -30,6 +30,19 @@ public class MemberVO {
 		this.memberPhone = memberPhone;
 		this.memberAddress = memberAddress;
 	}
+	
+	
+
+	public MemberVO(String memberId, String memberPw, int memberAge, String memberGender, String memberEmail, String memberPhone, String memberAddress) {
+		super();
+		this.memberId = memberId;
+		this.memberPw = memberPw;
+		this.memberAge = memberAge;
+		this.memberGender = memberGender;
+		this.memberEmail = memberEmail;
+		this.memberPhone = memberPhone;
+		this.memberAddress = memberAddress;
+	}
 
 	public String getMemberId() {
 		return memberId;

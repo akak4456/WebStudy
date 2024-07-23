@@ -19,6 +19,7 @@
 		<c:if test="${memberId ne null }">
 			${memberName }님 환영합니다.
 			<a href="/member/logout.kh">로그아웃</a>
+			<a href="/member/mypage.kh">마이페이지</a>
 		</c:if>
 	</body>
 </html>

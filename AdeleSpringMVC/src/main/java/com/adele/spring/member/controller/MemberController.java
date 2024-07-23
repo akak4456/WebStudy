@@ -27,6 +27,85 @@ public class MemberController {
 		return "member/insert";
 	}
 	
+	@RequestMapping(value="/member/mypage.kh", method=RequestMethod.GET)
+	public String showMyPage(Model model, HttpSession session) {
+		try {
+			String memberId = (String)session.getAttribute("memberId");
+			MemberVO member = mService.selectOneById(memberId);
+			if(member != null) {
+				model.addAttribute("member", member);
+				return "member/mypage";
+			} else {
+				model.addAttribute("msg","정보가 존재하지 않습니다.");
+				return "common/errorPage";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("msg", e.getMessage());
+			return "common/errorPage";
+		}
+	}
+	
+	@RequestMapping(value="/member/update.kh", method=RequestMethod.GET)
+	public String showUpdateForm(Model model, HttpSession session) {
+		try {
+			String memberId = (String)session.getAttribute("memberId");
+			MemberVO member = mService.selectOneById(memberId);
+			if(member != null) {
+				model.addAttribute("member", member);
+				return "member/update";
+			} else {
+				model.addAttribute("msg","정보가 존재하지 않습니다.");
+				return "common/errorPage";
+			}
+		} catch (Exception e) {
+			model.addAttribute("msg", e.getMessage());
+			return "common/errorPage";
+		}
+	}
+	
+	@RequestMapping(value="/member/update.kh", method=RequestMethod.POST)
+	public String updateMember(Model model,
+			@RequestParam("memberPw") String memberPw,
+			@RequestParam(value = "memberAge", required=false, defaultValue="0") int memberAge,
+			@RequestParam(value = "memberGender", required=false) String memberGender,
+			@RequestParam(value = "memberEmail", required=false) String memberEmail,
+			@RequestParam(value = "memberPhone", required=false) String memberPhone,
+			@RequestParam(value = "memberAddress", required=false) String memberAddress,
+			@RequestParam("memberId") String memberId) {
+		try {
+			MemberVO member = new MemberVO(memberId, memberPw, memberAge, memberGender,memberEmail, memberPhone, memberAddress);
+			int result = mService.updateMember(member);
+			if(result > 0) {
+				return "redirect:/member/mypage.kh";
+			} else {
+				model.addAttribute("msg","정보수정이 완료되지 않았습니다.");
+				return "common/errorPage";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("msg", e.getMessage());
+			return "common/errorPage";
+		}
+	}
+	
+	@RequestMapping(value="/member/delete.kh", method=RequestMethod.GET)
+	public String deleteMember(Model model, HttpSession session) {
+		try {
+			String memberId = (String) session.getAttribute("memberId");
+			int result = mService.deleteMember(memberId);
+			if(result > 0) {
+				return "redirect:/member/logout.kh";
+			} else {
+				model.addAttribute("msg", "회원탈퇴가 완료되지 않았습니다.");
+				return "common/errorPage";
+			}
+		} catch(Exception e) {
+			model.addAttribute("msg", e.getMessage());
+			return "common/errorPage";
+		}
+	}
+	
 	@RequestMapping(value="/member/register.kh", method=RequestMethod.POST)
 	public String insertMember(
 			HttpServletRequest request,

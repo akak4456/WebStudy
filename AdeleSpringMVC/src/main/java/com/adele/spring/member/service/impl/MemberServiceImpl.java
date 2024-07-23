@@ -23,14 +23,14 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public int updateMember(MemberVO member) {
-		// TODO Auto-generated method stub
-		return 0;
+		int result = mStore.updateMember(session, member);
+		return result;
 	}
 
 	@Override
 	public int deleteMember(String memberId) {
-		// TODO Auto-generated method stub
-		return 0;
+		int result = mStore.deleteMember(session, memberId);
+		return result;
 	}
 
 	@Override
@@ -41,8 +41,8 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public MemberVO selectOneById(String memberId) {
-		// TODO Auto-generated method stub
-		return null;
+		MemberVO result = mStore.selectOneById(session, memberId);
+		return result;
 	}
 
 }

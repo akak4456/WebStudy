@@ -18,14 +18,14 @@ public class MemberStoreImpl implements MemberStore {
 
 	@Override
 	public int updateMember(SqlSession session, MemberVO member) {
-		// TODO Auto-generated method stub
-		return 0;
+		int result = session.update("MemberMapper.updateMember", member);
+		return result;
 	}
 
 	@Override
 	public int deleteMember(SqlSession session, String memberId) {
-		// TODO Auto-generated method stub
-		return 0;
+		int result = session.delete("MemberMapper.deleteMember", memberId);
+		return result;
 	}
 
 	@Override
@@ -36,8 +36,8 @@ public class MemberStoreImpl implements MemberStore {
 
 	@Override
 	public MemberVO selectOneById(SqlSession session, String memberId) {
-		// TODO Auto-generated method stub
-		return null;
+		MemberVO result = session.selectOne("MemberMapper.selectOneById", memberId);
+		return result;
 	}
 
 }
