@@ -10,8 +10,10 @@
  	<!--  VO 만들어질때마다 추가 -->
  	<typeAliases>
  		<typeAlias type="com.adele.spring.member.domain.MemberVO" alias="Member" />
+ 		<typeAlias type="com.adele.spring.notice.domain.NoticeVO" alias="Notice" />
  	</typeAliases>
 	<mappers>
 		<mapper resource="mappers/member-mapper.xml"/>
+		<mapper resource="mappers/notice-mapper.xml"/>
 	</mappers>
 </configuration>

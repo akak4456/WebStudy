@@ -8,9 +8,10 @@
 	</head>
 	<body>
 		<h1>공지사항 등록</h1>
-		<form action="">
-			제목 : <input type="text"> <br>
-			내용 : <textarea></textarea> <br>
+		<form action="/notice/register.kh" method="post">
+			글쓴이 : <span>${memberId }</span> <br>
+			제목 : <input type="text" name="noticeSubject"> <br>
+			내용 : <textarea rows="4" cols="50" name="noticeContent"></textarea> <br>
 			<button>등록</button>
 		</form>
 	</body>

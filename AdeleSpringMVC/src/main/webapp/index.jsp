@@ -20,6 +20,9 @@
 			${memberName }님 환영합니다.
 			<a href="/member/logout.kh">로그아웃</a>
 			<a href="/member/mypage.kh">마이페이지</a>
+			<c:if test="${memberId eq 'admin' }">
+				<a href="/notice/register.kh">공지사항 등록</a>
+			</c:if>
 		</c:if>
 	</body>
 </html>

@@ -25,3 +25,12 @@ ul label {
 	background-color: #fafafa;
 	box-shadow: 1px 1px 1px #ccc;
 }
+
+table {
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+
+th, td {
+	border: 1px solid black;
+}
