@@ -17,7 +17,7 @@
         VALUES(SEQ_NOTICE_NO.NEXTVAL, #{noticeSubject}, #{noticeContent}, #{noticeWriter}, DEFAULT, DEFAULT, DEFAULT)
     </insert>
     <select id="selectList" resultMap="noticeResultMap">
-        SELECT * FROM NOTICE_TBL
+        SELECT * FROM NOTICE_TBL ORDER BY NOTICE_NO DESC
     </select>
     <select id="selectOne" resultMap="noticeResultMap">
         SELECT * FROM NOTICE_TBL
@@ -31,4 +31,7 @@
     <delete id="deleteNotice">
         DELETE FROM NOTICE_TBL WHERE NOTICE_NO = #{noticeNo}
     </delete>
+    <select id="getTotalCount" resultType="_int">
+        SELECT COUNT(*) FROM NOTICE_TBL
+    </select>
 </mapper>

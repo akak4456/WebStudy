@@ -44,6 +44,24 @@
                 <td>${notice.viewCount}</td>
             </tr>
             </c:forEach>
+            <tr>
+                <td colspan="5" align="center">
+                    <c:if test="${currentPage != 1}">
+                    <a href="/notice/list.kh?currentPage=${currentPage - 1}">이전</a>
+                    </c:if>
+                    <c:forEach begin="${startNavi}" end="${endNavi}" var="i">
+                        <c:if test="${currentPage eq i}">
+                            <span style="font-weight: bold; font-size: 30px;">${i}</span>
+                        </c:if>
+                        <c:if test="${currentPage ne i}">
+                            <a href="/notice/list.kh?currentPage=${i}">${i}</a>
+                        </c:if>
+                    </c:forEach>
+                    <c:if test="${currentPage != naviTotalCount}">
+                        <a href="/notice/list.kh?currentPage=${currentPage + 1}">다음</a>
+                    </c:if>
+                </td>
+            </tr>
         </table>
     </body>
 </html>

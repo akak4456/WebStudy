@@ -18,6 +18,46 @@
 	</insert>
 	<select id="selectList" resultMap="noticeResultMap">
 		SELECT *
-		FROM NOTICE_TBL
+		FROM NOTICE_TBL ORDER BY NOTICE_NO DESC
+	</select>
+	<select id="getTotalCount" resultType="_int">
+		SELECT COUNT(*) FROM NOTICE_TBL
+	</select>
+	<select id="selectOneByNo" resultMap="noticeResultMap">
+		SELECT *
+		FROM NOTICE_TBL WHERE NOTICE_NO=#{noticeNo}
+	</select>
+	<delete id="deleteNotice">
+		DELETE
+		FROM NOTICE_TBL WHERE NOTICE_NO=#{noticeNo}
+	</delete>
+	<update id="updateNotice">
+		UPDATE NOTICE_TBL
+		SET NOTICE_SUBJECT=#{noticeSubject}, NOTICE_CONTENT=#{noticeContent}, UPDATE_DATE = SYSTIMESTAMP
+		WHERE NOTICE_NO=#{noticeNo}
+	</update>
+	<select id="selectSearchList" resultMap="noticeResultMap">
+		SELECT * FROM NOTICE_TBL
+		<!-- 전체 검색 -->
+		<where>
+			<if test="searchCondition == 'all'">
+				NOTICE_WRITER LIKE '%'||#{searchKeyword}||'%'
+				OR NOTICE_SUBJECT LIKE '%'||#{searchKeyword}||'%'
+				OR NOTICE_CONTENT LIKE '%'||#{searchKeyword}||'%'
+			</if>
+			<!--  작성자 검색 -->
+			<if test="searchCondition == 'writer'">
+			 	NOTICE_WRITER LIKE '%'||#{searchKeyword}||'%'
+			</if>
+			<!-- 제목 검색 -->
+			<if test="searchCondition == 'title'">
+				NOTICE_SUBJECT LIKE '%'||#{searchKeyword}||'%'
+			</if>
+			<!-- 내용 검색 -->
+			<if test="searchCondition == 'content'">
+				NOTICE_CONTENT LIKE '%'||#{searchKeyword}||'%'
+			</if>
+		</where>
+		ORDER BY NOTICE_NO DESC
 	</select>
 </mapper>

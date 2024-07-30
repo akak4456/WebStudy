@@ -19,8 +19,8 @@ public class NoticeService {
         return result;
     }
 
-    public List<Notice> selectAllNotice() {
-        List<Notice> nList = nDao.selectList(session);
+    public List<Notice> selectAllNotice(int currentPage) {
+        List<Notice> nList = nDao.selectList(session, currentPage);
         return nList;
     }
 
@@ -37,5 +37,10 @@ public class NoticeService {
     public int deleteNotice(int noticeNo) {
         int result = nDao.deleteNotice(session, noticeNo);
         return result;
+    }
+
+    public int getTotalCount() {
+        int totalCount = nDao.getTotalCount(session);
+        return totalCount;
     }
 }
