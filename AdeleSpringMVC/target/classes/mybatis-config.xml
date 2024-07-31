@@ -11,9 +11,11 @@
  	<typeAliases>
  		<typeAlias type="com.adele.spring.member.domain.MemberVO" alias="Member" />
  		<typeAlias type="com.adele.spring.notice.domain.NoticeVO" alias="Notice" />
+ 		<typeAlias type="com.adele.spring.board.domain.BoardVO" alias="Board" />
  	</typeAliases>
 	<mappers>
 		<mapper resource="mappers/member-mapper.xml"/>
 		<mapper resource="mappers/notice-mapper.xml"/>
+		<mapper resource="mappers/board-mapper.xml" />
 	</mappers>
 </configuration>

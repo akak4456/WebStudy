@@ -19,4 +19,16 @@
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg ref="sqlSessionFactory"></constructor-arg>
 	</bean>
+	
+	<!-- 파일 업로드 관련 빈 등록 -->
+	<bean id="" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="100000000"></property>
+		<property name="maxUploadSizePerFile" value="100000000"></property>
+		<property name="maxInMemorySize" value="100000000"></property>
+		<!--
+		maxUploadSize : 한 요청당 업로드가 허용되는 최대 용량을 바이트 단위로 설정, -1 하면 제한없음
+		maxUploadSizePerFile : 한 파일당 업로드가 허용되는 최대 용량을 바이트 단위로 설정, -1 하면 제한 없음
+		maxInMemorySize : 디스크에 저장하지 않고 메모리에 유지하도록 허용하는 바이트 단위 
+		 -->
+	</bean>
 </beans>
