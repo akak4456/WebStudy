@@ -16,17 +16,24 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.adele.spring.notice.domain.NoticeVO;
 import com.adele.spring.notice.service.NoticeService;
+import com.adele.spring.reply.domain.ReplyVO;
+import com.adele.spring.reply.service.ReplyService;
 
 @Controller
 public class NoticeController {
 	@Autowired
 	private NoticeService nService;
+	
+	@Autowired
+	private ReplyService rService;
 
 	@RequestMapping(value = "/notice/detail", method = RequestMethod.GET)
 	public String showNoticeDetail(Model model, @RequestParam("noticeNo") int noticeNo) {
 		try {
 			NoticeVO notice = nService.selectOneByNo(noticeNo);
 			if (notice != null) {
+				List<ReplyVO> replyList = rService.selectReplyList(noticeNo);
+				model.addAttribute("rList", replyList);
 				model.addAttribute("notice", notice);
 				return "notice/detail";
 			} else {

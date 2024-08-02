@@ -44,7 +44,7 @@ public class BoardController {
 			@ModelAttribute BoardVO board) {
 		try {
 			String memberId = (String)session.getAttribute("memberId");
-			Map<String, Object> fileInfo = saveFile(uploadFile, request);
+			Map<String, Object> fileInfo = saveFile(uploadFile, session);
 			String fileName = (String) fileInfo.get("fileName");
 			String fileRename = (String) fileInfo.get("fileRename");
 			String filePath = (String) fileInfo.get("filePath");
@@ -69,13 +69,13 @@ public class BoardController {
 		}
 	}
 	
-	private Map<String, Object> saveFile(MultipartFile uploadFile, HttpServletRequest request) throws IllegalStateException, IOException {
+	private Map<String, Object> saveFile(MultipartFile uploadFile, HttpSession session) throws IllegalStateException, IOException {
 		Map<String, Object> result = new HashMap<String, Object>();
 		String fileName = uploadFile.getOriginalFilename();
 		Long fileSize= uploadFile.getSize();
 		
 		String savePath = "/resources/bUploadFiles";
-		String filePath = request.getSession().getServletContext().getRealPath(savePath);
+		String filePath = session.getServletContext().getRealPath(savePath);
 		// A: 1.png, B: 1.png
 		// 올린 시각을 기준으로 파일 이름을 만들어서 따로 저장
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
@@ -147,7 +147,20 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="/update.kh", method= RequestMethod.POST)
-	public String updateBoard(Model model, @ModelAttribute BoardVO board) {
+	public String updateBoard(
+			Model model, 
+			HttpSession session,
+			@RequestParam(value="reloadFile", required=false) MultipartFile reloadFile,
+			@ModelAttribute BoardVO board) throws IllegalStateException, IOException {
+		Map<String, Object> infoMap = saveFile(reloadFile, session);
+		String fileName = (String)infoMap.get("fileName");
+		String fileRename = (String)infoMap.get("fileRename");
+		String filePath = (String)infoMap.get("filePath");
+		Long fileLength = (Long)infoMap.get("fileSize");
+		board.setBoardFilename(fileName);
+		board.setBoardFileRename(fileRename);
+		board.setBoardFilepath(filePath);
+		board.setBoardFilelength(fileLength);
 		int result = bService.updateBoard(board);
 		return "redirect:/board/detail.kh?boardNo=" + board.getBoardNo();
 	}

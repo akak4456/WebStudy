@@ -72,7 +72,9 @@
 	</delete>
 	<update id="updateBoard">
 		UPDATE BOARD_TBL
-		SET BOARD_TITLE = #{boardTitle}, BOARD_CONTENT = #{boardContent}, B_UPDATE_DATE = DEFAULT
+		SET BOARD_TITLE = #{boardTitle}, BOARD_CONTENT = #{boardContent}, 
+		BOARD_FILENAME = #{boardFilename}, BOARD_FILERENAME = #{boardFileRename}, BOARD_FILEPATH = #{boardFilepath}, BOARD_FILELENGTH = #{boardFilelength},
+		B_UPDATE_DATE = DEFAULT
 		WHERE BOARD_NO = #{boardNo}
 	</update>
 </mapper>

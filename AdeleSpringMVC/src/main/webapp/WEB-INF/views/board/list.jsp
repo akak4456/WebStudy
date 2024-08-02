@@ -32,7 +32,12 @@
 							<td><a href="/board/detail.kh?boardNo=${board.boardNo }&currentPage=${currentPage}">${board.boardTitle }</a></td>
 							<td>${board.boardWriter }</td>
 							<td>${board.bCreateDate }</td>
-							<td>X</td>
+							<c:if test="${empty board.boardFilename }">
+								<td>X</td>
+							</c:if>
+							<c:if test="${not empty board.boardFilename }">
+								<td>X</td>
+							</c:if>
 						</tr>
 					</c:forEach>
 				</c:otherwise>

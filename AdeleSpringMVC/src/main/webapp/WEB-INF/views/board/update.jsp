@@ -8,7 +8,12 @@
 	</head>
 	<body>
 		<h1>게시글 수정</h1>
-		<form action="/board/update.kh" method="post">
+		<form action="/board/update.kh" method="post" enctype="multipart/form-data">
+			<input type="hidden" name="boardNo" value="${board.boardNo }">
+			<input type="hidden" name="boardFilename" value="${board.boardFilename }">
+			<input type="hidden" name="boardFileRename" value="${board.boardFileRename }">
+			<input type="hidden" name="boardFilepath" value="${board.boardFilepath }">
+			<input type="hidden" name="boardFilelength" value="${board.boardFilelength }">
 			<fieldset>
 				<legend>게시글 수정</legend>
 				<ul>
@@ -26,7 +31,10 @@
 					</li>
 					<li>
 						<label>첨부파일</label>
-						<input type="file">
+						<c:if test="${not empty board.boardFilename }">
+							<span><a href='../resources/bUploadFiles/${board.boardFileRename }'>${board.boardFilename }</a></span>
+						</c:if>
+						<input type="file" name="reloadFile">
 					</li>
 				</ul>
 			</fieldset>

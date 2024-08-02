@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ReplyMapper">
+	<insert id="insertReply">
+		INSERT INTO REPLY_TBL
+		VALUES(SEQ_REPLY_NO.NEXTVAL, #{refNoticeNo}, #{replyWriter}, #{replyContent}, DEFAULT, DEFAULT, DEFAULT)
+	</insert>
+	<select id="selectReplyList" resultType="Reply">
+		SELECT * FROM REPLY_TBL WHERE REF_NOTICE_NO = #{refNoticeNo}
+		ORDER BY REPLY_NO DESC
+	</select>
+</mapper>

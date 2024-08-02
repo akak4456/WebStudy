@@ -12,7 +12,10 @@
 			<li>제목 ${board.boardTitle }</li>
 			<li>작성자 ${board.boardWriter }</li>
 			<li>내용 ${board.boardContent }</li>
-			<li>첨부파일</li>
+			<li>
+				<label>첨부파일</label>
+				<a href="/resources/bUploadFiles/${board.boardFileRename }" download>${board.boardFilename }</a>
+			</li>
 		</ul>
 		<div>
 			<button type="button" onclick="showUpdateForm(${board.boardNo});">수정하기</button>
