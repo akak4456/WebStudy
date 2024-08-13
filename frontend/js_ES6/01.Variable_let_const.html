@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>ES6 Basic</title>
+	</head>
+	<body>
+		<h1>ES6에서는..?</h1>
+		<h2>ES6에 추가된 내용들</h2>
+		<p>
+			Binary and Octal Literals, Template Strings, let + const, Default + Rest +
+			Spread, Arrow and Lexcial This, Classes, Enhanced Object Literals
+			Destructuring, Iterators + For..Of, Generators, Comprehensions, Unicode,
+			Modules, Module Loaders, Map + Set + WeakMap + WeakSet, Proxies, Symbols,
+			Subclassable Build-ins, Math + Number + String + Object Apis, Promises,
+			Reflect Api, Tail Calls
+		</p>
+		<div id="divTag"></div>
+		<script>
+			for (var i = 1; i <= 20; i++) {
+				var button = document.createElement('button');
+				let noVal = i;
+				button.innerHTML = i;
+				button.onclick = () => {
+					alert(noVal);
+				};
+				document.querySelector('#divTag').appendChild(button);
+			}
+		</script>
+	</body>
+</html>
