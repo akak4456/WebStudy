@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: AdeleSpringBoot
+  datasource:
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@localhost:1521:xe
+    username: ADELESPRINGBOOT
+    password: ADELESPRINGBOOT
+  web:
+    resources.static-locations: file:C:/uploadFile/notice, classpath:/static/
+  mvc:
+    static-path-pattern: /images/notice/**
+
+server:
+  port: 8888
+
+mybatis:
+  configuration:
+    jdbc-type-for-null: null
+    map-underscore-to-camel-case: true
+  type-aliases-package: com.adele.adelespringboot
+  mapper-locations: classpath:/mappers/*-mapper.xml
+

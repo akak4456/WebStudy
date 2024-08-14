@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>공지사항 목록</title>
+        <link rel="stylesheet" href="/css/main.css">
+    </head>
+    <body>
+        <h1>공지사항 목록</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>번호</th>
+                    <th>제목</th>
+                    <th>작성자</th>
+                    <th>작성일자</th>
+                    <th>조회수</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="notice : ${nList}">
+                    <td>[[${notice.noticeNo}]]</td>
+                    <td>
+                        <a th:href="@{/notice/detail/{noticeNo}(noticeNo=${notice.noticeNo})}" th:text="${notice.noticeSubject}"></a>
+                    </td>
+                    <td th:text="${notice.noticeWriter}"></td>
+                    <td>[[${notice.noticeDate}]]</td>
+                    <td>[[${notice.viewCount}]]</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr align="center">
+                    <td colspan="5">
+                        <th:block th:each="p : ${#numbers.sequence(pn.startNavi, pn.endNavi)}">
+                            <a th:href="@{/notice/list(cp=${p})}" th:text="${p}"></a>
+                        </th:block>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </body>
+</html>

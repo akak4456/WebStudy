@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>공지사항 상세조회</title>
+    </head>
+    <body>
+        <h1>공지사항 상세</h1>
+        <ul>
+            <li>
+                <label>제목</label>
+                <span th:text="${notice.noticeSubject}"></span>
+            </li>
+            <li>
+                <label>내용</label>
+                <p th:text="${notice.noticeContent}"></p>
+            </li>
+            <li>
+                <label>첨부파일</label>
+                <th:block th:if="${notice.noticeFile != null}">
+                    <a th:href="@{|${notice.noticeFile.filePath}${notice.noticeFile.fileRename}|}" th:download="${notice.noticeFile.fileName}">다운로드</a>
+                </th:block>
+                <th:block th:if="${notice.noticeFile == null}">
+                    <span>없음</span>
+                </th:block>
+            </li>
+        </ul>
+        <button th:onclick="showModifyPage()">수정하기</button>
+        <button th:onclick="deleteNotice(/*[[${notice.noticeNo}]]*/)">삭제하기</button>
+        <button th:onclick="goBack()">뒤로가기</button>
+        <script th:inline="javascript">
+            function showModifyPage() {
+                location.href=location.pathname.replace("detail", "modify");
+            }
+            function deleteNotice(noticeNo) {
+                console.log(noticeNo);
+                if(confirm("정말 삭제하시겠습니까?")){
+                    location.href = location.pathname.replace("detail", "delete");
+                }
+            }
+            function goBack() {
+                history.go(-1);
+            }
+        </script>
+    </body>
+</html>
