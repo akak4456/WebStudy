@@ -6,10 +6,10 @@ spring:
     url: jdbc:oracle:thin:@localhost:1521:xe
     username: ADELESPRINGBOOT
     password: ADELESPRINGBOOT
-  web:
-    resources.static-locations: file:C:/uploadFile/notice, classpath:/static/
-  mvc:
-    static-path-pattern: /images/notice/**
+#  web:
+#    resources.static-locations: file:C:/uploadFile/notice, classpath:/static/
+#  mvc:
+#    static-path-pattern: /images/notice/**
 
 server:
   port: 8888

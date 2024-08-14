@@ -47,4 +47,15 @@
         INSERT INTO  NOTICE_FILE_TBL
         VALUES (SEQ_FILE_NO.NEXTVAL, #{fileName}, #{fileRename}, #{filePath}, #{noticeNo})
     </insert>
+    <update id="updateNoticeFile">
+        UPDATE NOTICE_FILE_TBL
+        SET FILE_NAME=#{fileName},
+            FILE_RENAME=#{fileRename},
+            FILE_PATH=#{filePath}
+        WHERE NOTICE_NO=#{noticeNo}
+    </update>
+    <delete id="deleteNoticeFile">
+        DELETE FROM NOTICE_FILE_TBL
+        WHERE NOTICE_NO = #{noticeNo}
+    </delete>
 </mapper>

@@ -68,14 +68,41 @@ public class NoticeServiceImpl implements NoticeService {
     }
 
     @Override
-    public int updateNotice(Notice notice) {
+    public int updateNotice(Notice notice, MultipartFile reloadFile) throws IllegalStateException, IOException {
         int result = mapper.updateNotice(notice);
+        if(reloadFile != null) {
+            String fileName = reloadFile.getOriginalFilename();
+            String fileRename = Util.fileRename(fileName);
+            String filePath = "/images/notice/";
+
+            NoticeFile noticeFile = new NoticeFile();
+            noticeFile.setFileName(fileName);
+            noticeFile.setFileRename(fileRename);
+            noticeFile.setFilePath(filePath);
+            noticeFile.setNoticeNo(notice.getNoticeNo());
+
+            reloadFile.transferTo(new File("C:/uploadFile/notice/" + fileRename));
+
+            NoticeFile nFileOne = mapper.selectNoticeFile(notice.getNoticeNo());
+            if(nFileOne != null) {
+                result = mapper.updateNoticeFile(noticeFile);
+            } else {
+                result = mapper.insertNoticeFile(noticeFile);
+            }
+
+        }
         return result;
     }
 
     @Override
     public int deleteNotice(Integer noticeNo) {
         int result = mapper.deleteNotice(noticeNo);
+        NoticeFile noticeFile = mapper.selectNoticeFile(noticeNo);
+        if(noticeFile != null) {
+            File nfile = new File("C:/uploadFile/notice/" + noticeFile.getFileRename());
+            nfile.delete();
+            result = mapper.deleteNoticeFile(noticeNo);
+        }
         return result;
     }
 

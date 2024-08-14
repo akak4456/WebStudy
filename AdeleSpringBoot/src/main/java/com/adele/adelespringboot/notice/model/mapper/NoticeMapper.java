@@ -55,4 +55,25 @@ public interface NoticeMapper {
      * @return int 결과
      */
     int insertNoticeFile(NoticeFile noticeFile);
+
+    /**
+     * 공지사항 파일 수정 Mapper
+     * @param noticeFile 파일
+     * @return int result
+     */
+    int updateNoticeFile(NoticeFile noticeFile);
+
+    /**
+     * 공지사항 파일 조회 Mapper
+     * @param noticeNo 공지사항 번호
+     * @return NoticeFile 파일 데이터
+     */
+    NoticeFile selectNoticeFile(Integer noticeNo);
+
+    /**
+     * 공지사항 파일 삭제 Mapper
+     * @param noticeNo 공지사항 번호
+     * @return int 결과
+     */
+    int deleteNoticeFile(Integer noticeNo);
 }

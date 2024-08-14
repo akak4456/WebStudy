@@ -80,8 +80,8 @@ public class NoticeController {
         return "notice/noticeModify";
     }
     @PostMapping("/modify")
-    public String noticeModify(Notice notice) {
-        int result = nService.updateNotice(notice);
+    public String noticeModify(Notice notice, @RequestParam("reloadFile") MultipartFile reloadFile) throws IllegalStateException, IOException {
+        int result = nService.updateNotice(notice, reloadFile);
         return "redirect:/notice/list";
     }
 

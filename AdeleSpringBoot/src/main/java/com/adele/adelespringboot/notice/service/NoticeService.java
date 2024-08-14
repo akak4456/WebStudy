@@ -40,7 +40,7 @@ public interface NoticeService {
      * @param notice 수정할 공지
      * @return int 결과
      */
-    int updateNotice(Notice notice);
+    int updateNotice(Notice notice, MultipartFile reloadFile) throws IllegalStateException, IOException;
 
     /**
      * 공지사항 삭제 Service
