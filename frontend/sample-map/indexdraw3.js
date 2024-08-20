@@ -96,6 +96,7 @@ function updateBounds(coords) {
 }
 
 // 포인트가 특정 폴리곤 내부에 있는지 확인합니다.
+// Ray casting algorithm 사용함
 function getPolygonNameAtPoint(point) {
 	var foundPolygonName = false;
 	sortedPolygons.forEach(function (polygon) {
