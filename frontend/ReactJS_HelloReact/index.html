@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Vanilla Counter</title>
+	</head>
+	<body>
+		<span>Total Clicks : </span>
+		<span id="counter"></span>
+		<button onclick="clickMe();">Click Me</button>
+		<script>
+			let counterVal = 0;
+			updateCounter();
+			function clickMe() {
+				counterVal++;
+				updateCounter();
+			}
+			function updateCounter() {
+				const spanTag = document.querySelector('#counter');
+				spanTag.innerHTML = counterVal;
+			}
+		</script>
+	</body>
+</html>

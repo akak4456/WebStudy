@@ -85,6 +85,8 @@ public class NoticeServiceImpl implements NoticeService {
 
             NoticeFile nFileOne = mapper.selectNoticeFile(notice.getNoticeNo());
             if(nFileOne != null) {
+                File nFile = new File("C:/uploadFile/notice/" + nFileOne.getFileRename());
+                nFile.delete();
                 result = mapper.updateNoticeFile(noticeFile);
             } else {
                 result = mapper.insertNoticeFile(noticeFile);
