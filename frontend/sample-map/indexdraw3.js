@@ -3,6 +3,12 @@ let offsetX = 0; // X축 오프셋
 let offsetY = 0; // Y축 오프셋
 let isDragging = false; // 드래그 여부
 let startX, startY; // 드래그 시작 위치
+let markers = [
+	{
+		lon: 128.908502,
+		lat: 37.802182,
+	},
+]; // 마커들
 
 var canvas = document.getElementById('myCanvas'),
 	ctx = canvas.getContext('2d'),
@@ -124,17 +130,19 @@ canvas.addEventListener('mousemove', function (event) {
 	});
 	if (polygonName) console.log(polygonName);
 });
-
-// 그려진 폴리곤들을 캔버스에 그립니다.
+function preSetupCtx() {
+	ctx.translate(offsetX, offsetY);
+	ctx.translate(canvas.width / 2, canvas.height / 2);
+	ctx.scale(scale, scale); // 줌 기능
+	ctx.translate(-canvas.width / 2, -canvas.height / 2);
+}
+// 그려진 폴리곤들 + 마커를 캔버스에 그립니다.
 function drawGangneung() {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	drawnPolygons.forEach(function (polygon) {
 		polygon.paths.forEach(function (path) {
 			ctx.save();
-			ctx.translate(offsetX, offsetY);
-			ctx.translate(canvas.width / 2, canvas.height / 2);
-			ctx.scale(scale, scale); // 줌 기능
-			ctx.translate(-canvas.width / 2, -canvas.height / 2);
+			preSetupCtx();
 			ctx.beginPath();
 			var isFirstPoint = true;
 			path.forEach(function (point) {
@@ -150,6 +158,21 @@ function drawGangneung() {
 			ctx.closePath();
 			ctx.restore();
 		});
+	});
+	markers.forEach((marker) => {
+		console.log(marker);
+		ctx.save();
+		preSetupCtx();
+		ctx.beginPath();
+		const x = lonToX(marker.lon);
+		const y = latToY(marker.lat);
+		console.log(scale);
+		// zoom in zoom out 기능이 있으므로 항상 사이즈는 scale 만큼
+		// 나눠야 한다는 것을 잊지 말자!!!!
+		ctx.arc(x, y, 10 / scale, 0, Math.PI * 2); // 원 그리기
+		ctx.fillStyle = 'blue'; // 원 색상
+		ctx.fill(); // 색상 채우기
+		ctx.restore();
 	});
 }
 
