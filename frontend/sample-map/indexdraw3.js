@@ -138,3 +138,10 @@ canvas.addEventListener('mousemove', function (event) {
 	});
 	if (polygonName) console.log(polygonName);
 });
+canvas.addEventListener('click', function (event) {
+	var polygonName = getPolygonNameAtPoint({
+		x: event.clientX - canvas.offsetLeft,
+		y: event.clientY - canvas.offsetTop,
+	});
+	if (polygonName) alert(polygonName);
+});
