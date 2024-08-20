@@ -1,3 +1,9 @@
+let scale = 1; // 기본 스케일
+let offsetX = 0; // X축 오프셋
+let offsetY = 0; // Y축 오프셋
+let isDragging = false; // 드래그 여부
+let startX, startY; // 드래그 시작 위치
+
 var canvas = document.getElementById('myCanvas'),
 	ctx = canvas.getContext('2d'),
 	canvasWidth = canvas.width,
@@ -48,27 +54,6 @@ data.features.forEach(function (feature) {
 	});
 
 	drawnPolygons.push(polygonData);
-});
-
-// 그려진 폴리곤들을 캔버스에 그립니다.
-drawnPolygons.forEach(function (polygon) {
-	polygon.paths.forEach(function (path) {
-		ctx.save();
-		ctx.beginPath();
-		var isFirstPoint = true;
-		path.forEach(function (point) {
-			if (isFirstPoint) {
-				ctx.moveTo(point.x, point.y);
-				isFirstPoint = false;
-			} else {
-				ctx.lineTo(point.x, point.y);
-			}
-		});
-		ctx.strokeStyle = 'black';
-		ctx.stroke();
-		ctx.closePath();
-		ctx.restore();
-	});
 });
 
 var sortedPolygons = [];
@@ -139,10 +124,84 @@ canvas.addEventListener('mousemove', function (event) {
 	});
 	if (polygonName) console.log(polygonName);
 });
-canvas.addEventListener('click', function (event) {
-	var polygonName = getPolygonNameAtPoint({
-		x: event.clientX - canvas.offsetLeft,
-		y: event.clientY - canvas.offsetTop,
+
+// 그려진 폴리곤들을 캔버스에 그립니다.
+function drawGangneung() {
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	drawnPolygons.forEach(function (polygon) {
+		polygon.paths.forEach(function (path) {
+			ctx.save();
+			ctx.translate(offsetX, offsetY);
+			ctx.translate(canvas.width / 2, canvas.height / 2);
+			ctx.scale(scale, scale); // 줌 기능
+			ctx.translate(-canvas.width / 2, -canvas.height / 2);
+			ctx.beginPath();
+			var isFirstPoint = true;
+			path.forEach(function (point) {
+				if (isFirstPoint) {
+					ctx.moveTo(point.x, point.y);
+					isFirstPoint = false;
+				} else {
+					ctx.lineTo(point.x, point.y);
+				}
+			});
+			ctx.strokeStyle = 'black';
+			ctx.stroke();
+			ctx.closePath();
+			ctx.restore();
+		});
 	});
-	if (polygonName) alert(polygonName);
+}
+
+drawGangneung();
+
+function zoomIn() {
+	scale *= 1.2; // 스케일을 20% 확대
+	drawGangneung();
+}
+
+function zoomOut() {
+	scale /= 1.2; // 스케일을 20% 축소
+	drawGangneung();
+}
+
+// 드래그 시작
+canvas.addEventListener('mousedown', function (e) {
+	isDragging = true;
+	startX = e.clientX - offsetX;
+	startY = e.clientY - offsetY;
+	canvas.style.cursor = 'grabbing'; // 커서 변경
+});
+
+// 드래그 중
+canvas.addEventListener('mousemove', function (e) {
+	if (isDragging) {
+		offsetX = e.clientX - startX;
+		offsetY = e.clientY - startY;
+		drawGangneung(); // 캔버스 내용 다시 그리기
+	}
+});
+
+// 드래그 종료
+canvas.addEventListener('mouseup', function () {
+	isDragging = false;
+	canvas.style.cursor = 'grab'; // 커서 변경
+});
+
+// 드래그가 캔버스 밖에서 종료되었을 때 처리
+canvas.addEventListener('mouseleave', function () {
+	isDragging = false;
+	canvas.style.cursor = 'grab'; // 커서 변경
+});
+
+// 휠 이벤트로 줌 인/아웃 제어
+canvas.addEventListener('wheel', function (e) {
+	e.preventDefault(); // 기본 휠 동작(스크롤) 방지
+
+	// e.deltaY > 0이면 휠이 아래로, e.deltaY < 0이면 휠이 위로 움직임
+	if (e.deltaY < 0) {
+		zoomIn(); // 줌 인
+	} else {
+		zoomOut(); // 줌 아웃
+	}
 });
