@@ -5,8 +5,8 @@ let isDragging = false; // 드래그 여부
 let startX, startY; // 드래그 시작 위치
 let markers = [
 	{
-		lon: 128.908502,
-		lat: 37.802182,
+		lon: 128.876151,
+		lat: 37.751908,
 	},
 ]; // 마커들
 
@@ -156,9 +156,20 @@ function drawGangneung() {
 			ctx.strokeStyle = 'black';
 			ctx.stroke();
 			ctx.closePath();
+			ctx.fillStyle = getRandomColor(); // 원 색상
+			ctx.fill(); // 색상 채우기
 			ctx.restore();
 		});
 	});
+
+	function getRandomColor() {
+		var letters = '0123456789ABCDEF';
+		var color = '#';
+		for (var i = 0; i < 6; i++) {
+			color += letters[Math.floor(Math.random() * 16)];
+		}
+		return color;
+	}
 	markers.forEach((marker) => {
 		console.log(marker);
 		ctx.save();
