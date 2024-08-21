@@ -76,6 +76,18 @@ function latToY(lat) {
 	return canvasHeight - canvasHeight * normalizedLat;
 }
 
+// 캔버스의 X 좌표를 이용해 경도를 계산합니다.
+function xToLon(x) {
+	var normalizedX = x / canvasWidth;
+	return normalizedX * (bounds.maxLon - bounds.minLon) + bounds.minLon;
+}
+
+// 캔버스의 Y 좌표를 이용해 위도를 계산합니다.
+function yToLat(y) {
+	var normalizedY = 1 - y / canvasHeight;
+	return normalizedY * (bounds.maxLat - bounds.minLat) + bounds.minLat;
+}
+
 // 경도와 위도를 바탕으로 최소, 최대 값을 업데이트합니다.
 function updateBounds(coords) {
 	var lon = coords[0],
@@ -88,8 +100,8 @@ function updateBounds(coords) {
 
 // 포인트가 특정 폴리곤 내부에 있는지 확인합니다.
 // Ray casting algorithm 사용함
-function getPolygonNameAtPoint(point) {
-	var foundPolygonName = false;
+function getPolygon(point) {
+	var foundPolygon;
 	sortedPolygons.forEach(function (polygon) {
 		var crossings = 0;
 		for (var i = 0; i < polygon.path.length; i++) {
@@ -103,9 +115,9 @@ function getPolygonNameAtPoint(point) {
 				if (point.x < intersectX) crossings++;
 			}
 		}
-		if (crossings % 2 > 0) foundPolygonName = polygon.name;
+		if (crossings % 2 > 0) foundPolygon = polygon;
 	});
-	return foundPolygonName;
+	return foundPolygon;
 }
 
 // 폴리곤을 y 좌표에 따라 내림차순으로 정렬합니다.
@@ -124,11 +136,11 @@ drawnPolygons.forEach(function (polygon) {
 
 // 마우스 움직임에 따라 폴리곤 이름을 출력합니다.
 canvas.addEventListener('mousemove', function (event) {
-	var polygonName = getPolygonNameAtPoint({
+	var polygon = getPolygon({
 		x: event.clientX - canvas.offsetLeft,
 		y: event.clientY - canvas.offsetTop,
 	});
-	if (polygonName) console.log(polygonName);
+	if (polygon) console.log(polygon.name);
 });
 function preSetupCtx() {
 	ctx.translate(offsetX, offsetY);
@@ -204,6 +216,8 @@ canvas.addEventListener('mousedown', function (e) {
 	isDragging = true;
 	startX = e.clientX - offsetX;
 	startY = e.clientY - offsetY;
+	console.log('lon', xToLon(e.clientX - canvas.offsetLeft));
+	console.log('lat', yToLat(e.clientY - canvas.offsetTop));
 	canvas.style.cursor = 'grabbing'; // 커서 변경
 });
 
