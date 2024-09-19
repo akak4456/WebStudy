@@ -5,8 +5,8 @@ import Controller from "./components/Controller";
 
 function App() {
   const [count, setCount] = useState(0);
-  const handlerCountUp = () => {
-    setCount(count + 1);
+  const handlerCountUp = (step) => {
+    setCount(count + step);
   };
 
   return (

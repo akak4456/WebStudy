@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>회원가입 유효성 체크</title>
+	</head>
+	<body>
+		문제<br />
+		회원가입시 각 필드마다 유효성 검사를 하여 처리 할 수 있도록 만들어라. <br />
+		1. ID는 영어소문자,숫자만 가능해야함(4~12자리,소문자로 시작해야함) <br />
+		2. PW는 영어소문자,대문자,숫자만 입력 가능해야 하고 (최소 8~12자리) <br />
+		3. PW와 PW_re는 같아야 함<br />
+		4. NAME은 무조건 한글만 가능해야 함(최소1글자 이상)<br />
+		5. 주소에는 영어 사용 불가(공백 불가)<br />
+		6. 우편번호는 무조건 숫자만 입력 가능해야 함<br />
+		7. 이메일은 @가 포함 되어야 함(@앞에가 영문자,숫자로 4~12글자 ) <br />
+		8. 전화번호는 첫번째 필드는 010만 입력 가능 해야 함 <br />
+		두번째 필드는 3자리 이상 입력 해야 함 <br />
+		세번째 필드는 무조건 4자리 입력 해야함 <br />
+		(모두 숫자만 가능 해야함) <br />
+
+		<center>
+			<fieldset>
+				<legend>회원가입</legend>
+				<pre>
+    <span id="message" style="color:blue;"></span>
+                <form action="join" method="post" id="form">
+    ID :        <input type="text" id="user_id" name="user_id" /><br>
+    PW :        <input type="password" id="pw" name="pw" /><br>
+    PW_re :     <input type="password" id="pw_re" name="pw_re"/><br>
+    NAME :      <input type="text" id="user_name" name="user_name"/><br>
+    ADDRESS :   <input type="text" id="addr" name="addr"/><br>
+    POST NUMBER:  <input type="text" size="5" id="post_1" name="post_1"/> - <input type="text" size="5" id="post_2" name="post_2" /> <br>
+    E-MAIL :    <input type="text" id="email" name="email"/><br>
+    PHONE :     <input type="text" id="tel1" size="2" maxlength="3" name="tel1"/>-<input type="text" id="tel2" size="2" maxlength="4" name="tel2"/>-<input type="text" id="tel3" size="2" maxlength="4" name="tel3"/><br>
+    <input type="submit" value="회원가입" onclick="return check();"/>  <input type="reset" value="취소" />
+                </form>
+    </pre>
+			</fieldset>
+		</center>
+		<script>
+			function check() {
+				const formTag = document.querySelector('#form');
+				const formData = new FormData(formTag);
+				const formProps = Object.fromEntries(formData);
+				console.log(formProps);
+				const idRegExp = /^[a-z][a-z0-9]{3,11}$/g;
+
+				const targetPw = '';
+				const pwRegExp = /[a-zA-Z0-9]{8,12}/g;
+
+				if (!idRegExp.test(formProps.user_id)) {
+					alert('id not exp');
+					return false;
+				} else if (!pwRegExp.test(targetPw)) {
+					alert('pw not exp');
+					return false;
+				}
+				return false;
+			}
+		</script>
+	</body>
+</html>
